@@ -6,52 +6,34 @@
     Consistent footer used throughout the application
 *@
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#" data-toggle="collapse" data-target="#navbarSupportedContent" onclick="fadeInSpecifiedView('overview-page')"><img src="~/images/logo/Logo - 680x680.png" width="30" height="30" class="d-inline-block align-top" alt=""></a>
+<div class="main_menu" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a class="navbar-brand logo_h" href="index.html"><img src="~/images/flag-purple.png" style="width:30px;height:30px;" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="nav-link" href="~/Views/Home/Index.cshtml">Home</a>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                <ul class="nav navbar-nav menu_nav ml-auto">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="Navbar-toggler-icon">
-            <i class="fas fa-bars fa-1x"></i>
-        </span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link navbar-item-expand" href="#" data-toggle="collapse" data-target="#navbarSupportedContent" onclick="fadeInSpecifiedView('tutorial-page')">Tutorials<span class="sr-only">(current)</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link navbar-item-expand" href="#" data-toggle="collapse" data-target="#navbarSupportedContent" onclick="fadeInSpecifiedView('weather-page')">Weather<span class="sr-only">(current)</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link navbar-item-expand" href="#" data-toggle="collapse" data-target="#navbarSupportedContent" onclick="fadeInSpecifiedView('earthquake-page')">Earthquake<span class="sr-only">(current)</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link navbar-item-expand" href="#" data-toggle="collapse" data-target="#navbarSupportedContent" onclick="fadeInSpecifiedView('pollution-page')">Pollution<span class="sr-only">(current)</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link navbar-item-expand" href="#" data-toggle="collapse" data-target="#navbarSupportedContent" onclick="fadeInSpecifiedView('population-page')">Population<span class="sr-only">(current)</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link navbar-item-expand" href="#" data-toggle="collapse" data-target="#navbarSupportedContent" onclick="fadeInSpecifiedView('news-page')">News<span class="sr-only">(current)</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link navbar-item-expand" href="#" data-toggle="collapse" data-target="#navbarSupportedContent" onclick="fadeInSpecifiedView('mortality-page')">Mortality<span class="sr-only">(current)</span></a>
-            </li>
-
-
-        </ul>
-
-    </div>
-
-
-</nav>
+                    <li class="nav-item"><a class="nav-link" href="#feature">Log In</a></li>
+                    <li class="nav-item submenu dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Projects</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" href="elements.html">Project 1</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements.html">Project 2</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements.html">Project 3</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements.html">Project 4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
 
