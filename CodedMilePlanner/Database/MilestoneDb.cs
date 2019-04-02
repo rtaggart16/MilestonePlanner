@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CodedMilePlanner.NewFolder
+namespace CodedMilePlanner.Database
 {
     /// <summary>
     /// Database class that defines the tables required for the application and provide
