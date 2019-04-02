@@ -7,12 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CodedMilePlanner.Controllers
 {
-    
+        /// <summary>
+        /// Method that handles the displaying of the landing page
+        /// </summary>
         public class HomeController : Controller
         {
             [HttpGet]
             public IActionResult Index()
             {
+                // Specifies the response type
                 Response.ContentType = "text/html";
                 return View();
             }
