@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CodedMilePlanner.Controllers
 {
-    
-     [Route("[controller]/[action]")]
+
+    [Route("[controller]/[action]")]
     public class MilestoneController : Controller
     {
         private readonly MilestoneDb _db;
