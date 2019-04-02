@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>@ViewData["Title"] - CodedMile</title>
+
+    <environment include="Development">
+        <!-- Script Files -->
+        <script src="~/lib/jquery/jquery-3.3.1.min.js" async></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" defer></script>
+        <script src="~/lib/bootstrap/js/bootstrap.js" defer></script>
+        <script src="~/js/site.js" asp-append-version="true" defer></script>>
+        <script src="~/lib/sweetalert2/sweetalert2.all.min.js" defer></script>
+        <!-- END: Script Files -->
+        <!-- Stylesheet Files -->
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <!-- END: Stylesheet Files -->
+    </environment>
+    <environment exclude="Development">
+        <!-- Script Files -->
+        <script src="~/lib/jquery/jquery-3.3.1.min.js" async></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" defer></script>
+        <script src="~/lib/bootstrap/js/bootstrap.js" defer></script>
+        <script src="~/js/site.min.js" defer></script>
+        <script src="~/lib/sweetalert2/sweetalert2.all.min.js" defer></script>
+        <!-- END: Script Files -->
+        <!-- Stylesheet Files -->
+        <link href="~/css/site.min.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <!-- END: Stylesheet Files -->
+    </environment>
+</head>
+<body>
+    @await Html.PartialAsync("~/Views/Shared/Layout/_Navbar.cshtml")
+    <div class="container body-content">
+        @RenderBody()
+
+        <hr />
+        @await Html.PartialAsync("~/Views/Shared/Layout/_Footer.cshtml")
+
+    </div>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
