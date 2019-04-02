@@ -27,6 +27,7 @@ namespace CodedMilePlanner.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+
             Response.ContentType = "text/html";
             return View();
         }
