@@ -1,3 +1,25 @@
 body {
     font-family: 'Quicksand', sans-serif;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    background: #6248EA;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #8342FC;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #9F37FD;
+    }
