@@ -7,11 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CodedMilePlanner.Controllers
 {
-    public class HomeController : Controller
-    {
-        public IActionResult Index()
+    
+        public class HomeController : Controller
         {
-            return View();
+            [HttpGet]
+            public IActionResult Index()
+            {
+                Response.ContentType = "text/html";
+                return View();
+            }
         }
-    }
+    
 }
