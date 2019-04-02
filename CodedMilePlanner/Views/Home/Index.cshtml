@@ -1,32 +1,23 @@
-﻿
-@{
-    ViewData["Title"] = "Home Page";
-    Layout = "~/Views/Partial/_Layout.cshtml";
-}
-<link href="~/css/Overview/overview.css" rel="stylesheet" />
+﻿<div class="banner-outer jumbotron" id="banner" style="background: no-repeat center; padding-bottom:100px; text-align:center">
+    <div class="banner-header">
+        <h1>Coded Mile Milestone Planner</h1>
+    </div>
 
-@*
-    Author Info:
-
-    Name(s) - Ross Taggart, Katie King
-    Student Number - S1828840, S1827986
-    Date Created - 17/02/2019
-    Version - 1.0.0
-
-    Description:
-    Page that will contain all partial views in use within the application
-*@
-
-<!-- Overview Page -->
-<div id="overview-page">
-    @*<div id="overview-title-container" class="text-center">
-            <h3 class="mile-title">mile</h3>
-            <p class="mile-desc">Weather processing platform</p>
-        </div>*@
-
-    <div>
-        @await Html.PartialAsync("~/Views/Partial/_OverviewLandingPage.cshtml")
+    <div class="row  padded-row">
+        <div class="col-6 banner-body-tile-container">
+            <p>
+                <a asp-action="Register" asp-controller="Home">Register</a>
+            </p>
+        </div>
+    </div>
+    <div class="row  padded-row">
+        <div class="col-6 banner-body-tile-container">
+            <p>
+                <a asp-action="Login" asp-controller="Home">Login</a>
+            </p>
+        </div>
     </div>
 </div>
-<!-- END: Overview Page -->
+
+
 
