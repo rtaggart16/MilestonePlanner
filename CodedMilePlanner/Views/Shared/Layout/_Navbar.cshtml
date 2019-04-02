@@ -1,0 +1,44 @@
+﻿@*
+    Date Created - 02/04/2019
+    Version - 1.0.0
+
+    Description:
+    Consistent footer used throughout the application
+*@
+
+<div class="main_menu" id="mainNav", style="background-image: url('/images/NavBar/banner.jpg');">
+    <nav class="navbar navbar-expand-sm navbar-dark">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a class="navbar-brand logo_h" href="~/Home/Index"><img src="~/images/Logo/flag-white.png" style="width:30px;height:30px;" alt=""></a>
+            <a class="nav-item nav-link " href="~/Home/Index" style="color:lightgray;">CodedMile</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                <ul class="nav navbar-nav menu_nav ml-auto">
+
+                    <li class="nav-item"><a class="nav-link" href="~/User/Login">Log In</a></li>
+                    <li class="nav-item"><a class="nav-link" href="~/User/Register">Register</a></li>
+                    <li class="nav-item submenu dropdown">
+                        @*if the user is not logged in, the log in button is displayed, if the user is, it shows their projects *@
+                        @*To do!!!!*@
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Projects</a>
+
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" href="elements.html">Project 1</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements.html">Project 2</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements.html">Project 3</a></li>
+                            <li class="nav-item"><a class="nav-link" href="elements.html">Project 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#feature">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<br/>
+
