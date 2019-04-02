@@ -14,11 +14,13 @@
         <script src="~/js/site.js" asp-append-version="true" defer></script>>
         <script src="~/lib/sweetalert2/sweetalert2.all.min.js" defer></script>
         <!-- END: Script Files -->
+
         <!-- Stylesheet Files -->
         <link rel="stylesheet" href="~/css/site.css" />
         <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
         <!-- END: Stylesheet Files -->
     </environment>
+
     <environment exclude="Development">
         <!-- Script Files -->
         <script src="~/lib/jquery/jquery-3.3.1.min.js" async></script>
@@ -27,19 +29,21 @@
         <script src="~/js/site.min.js" defer></script>
         <script src="~/lib/sweetalert2/sweetalert2.all.min.js" defer></script>
         <!-- END: Script Files -->
+
         <!-- Stylesheet Files -->
         <link href="~/css/site.min.css" rel="stylesheet" />
         <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <!-- END: Stylesheet Files -->
     </environment>
+
 </head>
 <body>
-    @await Html.PartialAsync("~/Views/Shared/Layout/_Navbar.cshtml")
+    @await Html.PartialAsync("~/Views/Partial/_Navbar.cshtml")
     <div class="container body-content">
         @RenderBody()
 
         <hr />
-        @await Html.PartialAsync("~/Views/Shared/Layout/_Footer.cshtml")
+        @await Html.PartialAsync("~/Views/Partial/_Footer.cshtml")
 
     </div>
 
