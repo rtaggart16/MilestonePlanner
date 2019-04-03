@@ -27,7 +27,7 @@
                 <br />
 
                 <div>
-                    <span> <i class="fas fa-user"></i> Email</span>
+                    <span> <i class="fas fa-envelope"></i> Email</span>
                     @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Email" })
                 </div>
 
@@ -58,19 +58,3 @@
     <div class="col-md-3">
     </div>
 </div>
-
-
-
-    <div>
-        <span>Password</span>
-    </div>
-    <div class="form-control">
-        @Html.PasswordFor(x => x.Password)
-    </div>
-    <div>
-        <span>Confirm Password</span>
-    </div>
-    <div class="form-control">
-        @Html.PasswordFor(x => x.Confirm_Password)
-    </div>
-
