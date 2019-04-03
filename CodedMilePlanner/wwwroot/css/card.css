@@ -1,0 +1,30 @@
+/*
+    For all cards, use following structure:
+    (Can be used in conjunction with COL class eg col-md-6)
+
+    <div class="card COL-SIZE-NUM">
+        <div class="card-header"></div>
+        <div class="card-body"></div>
+    </div>
+*/
+
+
+
+.fas {
+    display: inline;
+}
+
+
+.login-card {
+    width:calc(100% - 2em);
+    padding:1em;
+    margin:1em;
+    text-align:center;
+}
+
+.card-header {
+    font-size: 2.5rem;
+}
+
+.card-body {
+}
