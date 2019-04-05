@@ -118,7 +118,7 @@ namespace CodedMilePlanner.Controllers
 
                 // Creates the user using the UserManager
                 await _userManager.CreateAsync(user, model.Password);
-
+                
                 // Specifies the content type of the response (HTML)
                 Response.ContentType = "text/html";
 

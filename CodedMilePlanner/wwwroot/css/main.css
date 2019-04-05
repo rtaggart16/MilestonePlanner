@@ -1,6 +1,59 @@
+/*
+    Contents
+        - Headers Styling
+        - Body Styling
+        - Sidebar Styling
+
+*/
+
+
+
+/*---------HEADERS SYTLING--------*/
+.projects-header {
+    color:white;
+}
+
+.projects-header a {
+    color:white;
+}
+
+.projects-header a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+h1, h2, h3 {
+    color:white;
+}
+
+.milestone-header {
+    color: white;
+}
+
+    .milestone-header a {
+        color: white;
+    }
+
+        .milestone-header a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+
+
+
+
+
+/*--------BODY SYTLING---------*/
 body {
     font-family: 'Quicksand', sans-serif;
 }
+
+
+
+
+
+/*--------SIDEBAR SYTLING--------*/
 
 /* width */
 ::-webkit-scrollbar {
@@ -20,6 +73,11 @@ body {
 }
 
 /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #9F37FD;
-    }
+::-webkit-scrollbar-thumb:hover {
+    background: #9F37FD;
+}
+
+
+
+
+

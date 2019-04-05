@@ -1,0 +1,16 @@
+﻿.project-card {
+    border-radius: 25px;
+    background: white;
+    padding: 20px;
+    height: 150px;
+}
+
+.project-title {
+    height: 65%;
+    float: left;
+    overflow: hidden;
+}
+
+.project-start-date{
+    height: 75%;
+}

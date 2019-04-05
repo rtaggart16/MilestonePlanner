@@ -1,0 +1,57 @@
+﻿
+@model CodedMilePlanner.Models.Milestone
+@{
+    ViewData["Title"] = "Add a Milestone";
+    Layout = "~/Views/Shared/Layout/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="card login-card col-md-6">
+        <div class="card-header h2">Add a Project</div>
+        <div class="card-body">
+            <form asp-controller="Milestone" asp-action="AddMilestone" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+
+                <div>
+                    <span> <i class="fas fa-project-diagram"></i> Name</span>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Name of Milestone" })
+                </div>
+
+                <br />
+
+                <div>
+                    <span> <i class="fas fa-align-left"></i> Description</span>
+                    @Html.TextBoxFor(x => x.Description, new { @class = "form-control", placeholder = "Description" })
+                </div>
+
+                <br />
+
+                <div>
+                    <span><i class="fas fa-calendar-alt"></i> Due Date</span>
+                    <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
+                        <div class="col-sm-6">
+                            @Html.EditorFor(x => x.Due_Date, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                Project ID - @Model.Project_ID
+
+                @Html.HiddenFor(x => x.Project_ID)
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Add My New Milestone</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>
+
+
+
+
