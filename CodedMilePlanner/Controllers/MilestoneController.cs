@@ -9,17 +9,29 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CodedMilePlanner.Controllers
 {
-
+    
     [Route("[controller]/[action]")]
     public class MilestoneController : Controller
     {
+        /// <summary>
+        /// Attribute for the database
+        /// </summary>
         private readonly MilestoneDb _db;
 
+        /// <summary>
+        /// Milestone controller that handles the milestone page
+        /// </summary>
+        /// <param name="db"></param>
         public MilestoneController(MilestoneDb db)
         {
             _db = db;
         }
 
+        /// <summary>
+        /// Method that displays all milestones depending on project id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Milestones(int id)
         {
@@ -29,6 +41,11 @@ namespace CodedMilePlanner.Controllers
             return View(project);
         }
 
+        /// <summary>
+        /// Get Method that allows the use to add a milestone
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult AddMilestone(int id)
         {
@@ -37,6 +54,11 @@ namespace CodedMilePlanner.Controllers
             return View(milestone);
         }
 
+        /// <summary>
+        /// Post method that allows the user to add a milestone
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult AddMilestone(Milestone model)
         {
@@ -51,6 +73,11 @@ namespace CodedMilePlanner.Controllers
             return RedirectToAction("Milestones", new { id = project.ID });
         }
 
+        /// <summary>
+        /// Get milestone that allows the user to edit a milestone
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult EditMilestone(int id)
         {
@@ -61,6 +88,11 @@ namespace CodedMilePlanner.Controllers
             return View(milestone);
         }
 
+        /// <summary>
+        /// Post method that allows the user to edit a milestone
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult EditMilestone(Milestone model)
         {
@@ -73,6 +105,11 @@ namespace CodedMilePlanner.Controllers
             return RedirectToAction("Milestones", new { id = model.Project_ID });
         }
 
+        /// <summary>
+        /// get method that allows the user to mark a milestone as complete
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Complete(int id)
         {
@@ -87,6 +124,11 @@ namespace CodedMilePlanner.Controllers
             return RedirectToAction("Milestones", new { id = milestone.Project_ID });
         }
 
+        /// <summary>
+        /// get method that allows the user to delete a milestone
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Delete(int id)
         {
