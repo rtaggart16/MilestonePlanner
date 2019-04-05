@@ -1,5 +1,5 @@
 ﻿
-@model CodedMilePlanner.Models.Milestone;
+@model CodedMilePlanner.Models.Milestone
 @{
     ViewData["Title"] = "Add a Milestone";
     Layout = "~/Views/Shared/Layout/_Layout.cshtml";
@@ -38,9 +38,7 @@
 
                 <br />
 
-                <div class="form-control">
-                    @Html.HiddenFor(x => x.Project_ID)
-                </div>
+                @Html.HiddenFor(x => x.Project_ID)
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Add My New Milestone</button>
