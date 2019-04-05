@@ -11,31 +11,54 @@
         </a>
     </h2>
 
+    <div class="row">
+        @foreach (CodedMilePlanner.Models.Milestone milestone in Model.Milestones)
+        {
 
-@if (Model.Milestones.Count > 0)
-{
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Due Date</th>
-            </tr>
-        </thead> 
-        <tbody>
-            @foreach (var item in Model.Milestones)
-            {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Description</td>
-                    <td>@item.Due_Date.ToShortDateString()</td>
-                    <td><a href="../../Milestone/EditMilestone?id=@item.ID">Update</a></td>
-                    <td><a href="../../Milestone/Delete?id=@item.ID">Delete</a></td>
-                </tr>
-            }
-        </tbody>
+            <div class="card login-card col-md-6">
+                <div class="card-header h2">@milestone.Name</div>
+                <div class="card-body">
+                    <form asp-controller="Project" asp-action="EditProject" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
 
-    </table>
-}
-</div>
+                        <div>
+                            <span> <i class="fas fa-align-left"></i> <b>Description</b></span>
+                        </div>
+                        <div>
+                            @milestone.Description
+                        </div>
+
+                        <br />
+
+                        <div>
+                            <span><i class="fas fa-calendar-alt"></i> <b>Milestone Due Date</b></span>
+                            <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
+                                <div class="col-sm-6">
+                                    @milestone.Due_Date
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <i class="fas fa-pen"></i>
+                                <a href="../../Milestone/EditProject?id=@milestone.ID">Update</a>
+                            </div>
+                            <div class="col-md-4">
+                                <i class="fas fa-trash"></i>
+                                <a href="../../Milestone/Delete?id=@milestone.ID">Delete</a>
+                            </div>
+                            <div class="col-md-4">
+                                <i class="fas fa-project-diagram"></i>
+                                <a href="../../Milestone/Milestones?id=@milestone.ID">Milestones</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+    
 
