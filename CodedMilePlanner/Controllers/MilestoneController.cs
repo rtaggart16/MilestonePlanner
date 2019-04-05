@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CodedMilePlanner.Models;
-using CodedMilePlanner.Models.ViewModels;
 using CodedMilePlanner.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -52,7 +51,6 @@ namespace CodedMilePlanner.Controllers
         {
             Response.ContentType = "text/html";
             Milestone milestone = new Milestone("", "", new DateTime(), id);
-
             return View(milestone);
         }
 
