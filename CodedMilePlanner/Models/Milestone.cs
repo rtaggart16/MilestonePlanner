@@ -9,9 +9,6 @@ namespace CodedMilePlanner.Models
 {
     public class Milestone
     {
-
-
-        
         /// <summary>
         /// Attribute for the ID of the Class
         /// </summary>
