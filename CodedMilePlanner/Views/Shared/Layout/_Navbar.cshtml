@@ -22,19 +22,26 @@
 
                     <li class="nav-item"><a class="nav-link" href="~/User/Login">Log In</a></li>
                     <li class="nav-item"><a class="nav-link" href="~/User/Register">Register</a></li>
-                    <li class="nav-item submenu dropdown">
-                        @*if the user is not logged in, the log in button is displayed, if the user is, it shows their projects *@
-                        @*To do!!!!*@
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Projects</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item submenu dropdown">
+                            @*if the user is not logged in, the log in button is displayed, if the user is, it shows their projects *@
+                            @*To do!!!!*@
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Projects</a>
 
-                        <ul class="dropdown-menu">
-                            <li class="nav-item"><a class="nav-link" href="elements.html">Project 1</a></li>
-                            <li class="nav-item"><a class="nav-link" href="elements.html">Project 2</a></li>
-                            <li class="nav-item"><a class="nav-link" href="elements.html">Project 3</a></li>
-                            <li class="nav-item"><a class="nav-link" href="elements.html">Project 4</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#feature">Log Out</a></li>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a class="nav-link" href="elements.html">Project 1</a></li>
+                                <li class="nav-item"><a class="nav-link" href="elements.html">Project 2</a></li>
+                                <li class="nav-item"><a class="nav-link" href="elements.html">Project 3</a></li>
+                                <li class="nav-item"><a class="nav-link" href="elements.html">Project 4</a></li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item"><a class="nav-link" href="#feature">Log Out</a></li>
+                    }
                 </ul>
             </div>
         </div>
