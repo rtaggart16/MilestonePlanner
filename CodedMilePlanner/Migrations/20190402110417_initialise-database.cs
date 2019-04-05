@@ -185,7 +185,7 @@ namespace CodedMilePlanner.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Action_Completion_Date = table.Column<DateTime>(nullable: false),
+                    Action_Completion_Date = table.Column<DateTime>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Due_Date = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
