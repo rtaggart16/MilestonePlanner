@@ -30,14 +30,14 @@ h1, h2, h3 {
     color: white;
 }
 
-    .milestone-header a {
-        color: white;
-    }
+.milestone-header a {
+    color: white;
+}
 
-        .milestone-header a:hover {
-            color: white;
-            text-decoration: none;
-        }
+.milestone-header a:hover {
+    color: white;
+    text-decoration: none;
+}
 
 
 
