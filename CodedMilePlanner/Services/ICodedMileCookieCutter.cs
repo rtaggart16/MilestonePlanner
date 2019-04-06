@@ -55,7 +55,7 @@ namespace CodedMilePlanner.Services
             switch(type)
             {
                 case CodedMileCookieTypes.Authorisation:
-                    if (cookies.Where(x => x.Key == "cmAuthToken") != null)
+                    if (cookies.Where(x => x.Key == "cmAuthToken").Count() > 0)
                     {
                         model.HasCookie = true;
                         model.Value = cookies.FirstOrDefault(x => x.Key == "cmAuthToken").Value;
@@ -70,13 +70,25 @@ namespace CodedMilePlanner.Services
         {
             string randomString = _helper.GenerateRandomAlphaNumeric(9);
 
-            UserAuthorisationToken dbToken = new UserAuthorisationToken
-            {
-                User_ID = model.User_ID,
-                Value = randomString
-            };
+            var existingDbToken = _db.User_Auth_Tokens.FirstOrDefault(x => x.User_ID == model.User_ID);
 
-            _db.User_Auth_Tokens.Add(dbToken);
+            if(existingDbToken == null)
+            {
+                UserAuthorisationToken dbToken = new UserAuthorisationToken
+                {
+                    User_ID = model.User_ID,
+                    Value = randomString
+                };
+
+                _db.User_Auth_Tokens.Add(dbToken);
+            }
+            else
+            {
+                existingDbToken.Value = randomString;
+
+                _db.User_Auth_Tokens.Update(existingDbToken);
+            }
+            
             _db.SaveChanges();
 
             CookieResultModel result = new CookieResultModel
