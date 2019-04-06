@@ -1,6 +1,9 @@
 ﻿using CodedMilePlanner.Database;
 using CodedMilePlanner.Models;
+using CodedMilePlanner.Models.ServiceModels;
 using CodedMilePlanner.Models.ViewModels;
+using CodedMilePlanner.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -28,17 +31,20 @@ namespace CodedMilePlanner.Controllers
         /// </summary>
         private readonly SignInManager<User> _signInManager;
 
+        private readonly ICodedMileCookieCutter _cookieCutter;
+
         /// <summary>
         /// Constructor for the UserController that handles dependency injection
         /// </summary>
         /// <param name="userManager">Instance of UserManager class that will be used to initialise the global private instance</param>
         /// <param name="db">Instance of MilestoneDb class that will be used to initialise the global private instance</param>
         /// <param name="signInManager">Instance of SignInManager class that will be used to initialise the global private instance</param>
-        public UserController(UserManager<User> userManager, MilestoneDb db, SignInManager<User> signInManager)
+        public UserController(UserManager<User> userManager, MilestoneDb db, SignInManager<User> signInManager, ICodedMileCookieCutter cookieCutter)
         {
             _userManager = userManager;
             _db = db;
             _signInManager = signInManager;
+            _cookieCutter = cookieCutter;
         }
 
         /// <summary>
@@ -68,13 +74,30 @@ namespace CodedMilePlanner.Controllers
                 User user = _db.Users.FirstOrDefault(x => x.Email == model.Email);
 
                 // Signs in the user using the SignInManager
-                await _signInManager.SignInAsync(user, false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, lockoutOnFailure: false);
+
+                if(result.Succeeded)
+                {
+                    CookieCutterModel cookieCutterModel = new CookieCutterModel
+                    {
+                        User_ID = user.Id
+                    };
+
+                    CookieResultModel cookieModel = _cookieCutter.CreateCodedMileCookie(cookieCutterModel, CodedMileCookieTypes.Authorisation);
+
+                    Response.Cookies.Append(cookieModel.Key, cookieModel.Value);
+
+                    // Specifies the content type of the response (HTML)
+                    Response.ContentType = "text/html";
+
+                    // Redirects the user to the Projects Action
+                    return RedirectToAction("Projects", "Project");
+                }
 
                 // Specifies the content type of the response (HTML)
                 Response.ContentType = "text/html";
+                return View();
 
-                // Redirects the user to the Projects Action
-                return RedirectToAction("Projects", "Project");
             }
             else
             {
@@ -116,14 +139,33 @@ namespace CodedMilePlanner.Controllers
                     UserName = model.Email
                 };
 
-                // Creates the user using the UserManager
-                await _userManager.CreateAsync(user, model.Password);
-                
-                // Specifies the content type of the response (HTML)
-                Response.ContentType = "text/html";
+                try
+                {
+                    // Creates the user using the UserManager
+                    await _userManager.CreateAsync(user, model.Password);
 
-                // Redirects the user to the Projects Action
-                return RedirectToAction("Projects", "Project");
+                    CookieCutterModel cookieCutterModel = new CookieCutterModel
+                    {
+                        User_ID = user.Id
+                    };
+
+                    CookieResultModel cookieModel = _cookieCutter.CreateCodedMileCookie(cookieCutterModel, CodedMileCookieTypes.Authorisation);
+
+                    Response.Cookies.Append(cookieModel.Key, cookieModel.Value);
+
+                    // Specifies the content type of the response (HTML)
+                    Response.ContentType = "text/html";
+
+                    // Redirects the user to the Projects Action
+                    return RedirectToAction("Projects", "Project");
+                }
+                catch (Exception ex)
+                {
+                    // Specifies the content type of the response (HTML)
+                    Response.ContentType = "text/html";
+                    return View();
+                }
+                
             }
             else
             {
