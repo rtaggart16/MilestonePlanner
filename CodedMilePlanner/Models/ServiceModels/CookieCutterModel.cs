@@ -7,6 +7,6 @@ namespace CodedMilePlanner.Models.ServiceModels
 {
     public class CookieCutterModel
     {
-
+        public string User_ID { get; set; }
     }
 }
