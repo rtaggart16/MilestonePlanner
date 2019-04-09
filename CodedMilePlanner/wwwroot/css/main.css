@@ -14,7 +14,7 @@
 }
 
 .projects-header a {
-    color:white;
+    color: Gainsboro;
 }
 
 .projects-header a:hover {
@@ -47,6 +47,7 @@ h1, h2, h3 {
 /*--------BODY SYTLING---------*/
 body {
     font-family: 'Quicksand', sans-serif;
+    
 }
 
 

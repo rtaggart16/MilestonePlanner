@@ -13,43 +13,51 @@
     <div class="row">
         @foreach (CodedMilePlanner.Models.Milestone milestone in Model.Milestones)
         {
-            <div class="card login-card col-md-6">
-                <div class="card-header h2">@milestone.Name</div>s
-                <div class="card-body">
-                    <form asp-controller="Project" asp-action="EditProject" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+            <div class="col-md-6">
+                <div class="card project-card">
+                    <div class="card-header h2">@milestone.Name</div>
+                    <div class="card-body">
 
                         <div>
-                            <span> <i class="fas fa-align-left"></i> <b>Description</b></span>
+                            <button class="btn" data-clipboard-text="@("http://localhost:56030/Milestone/Shared?id="+milestone.ID)">
+                                <i class="fas fa-share-square"></i>
+                            </button>
                         </div>
-                        <div>
-                            @milestone.Description
-                        </div>
 
-                        <br />
 
-                        <div>
-                            <span><i class="fas fa-calendar-alt"></i> <b>Project Start and End</b></span>
-                            <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
-                                <div class="col-sm-6">
-                                    @milestone.Due_Date
+                        <form asp-controller="Project" asp-action="EditProject" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+
+                            <div>
+                                <span> <i class="fas fa-align-left"></i> <b>Description</b></span>
+                            </div>
+                            <div>
+                                @milestone.Description
+                            </div>
+
+                            <br />
+
+                            <div>
+                                <span><i class="fas fa-calendar-alt"></i> <b>Milestones Due Date</b></span>
+                                <div class=" form-group" style="margin-top:1em;margin-bottom:1em;">
+                                        @milestone.Due_Date
                                 </div>
                             </div>
-                        </div>
 
-                        <br />
+                            <br />
 
-                        <div class="row">
-                            <div class="col-md-3">
-                                <i class="fas fa-pen"></i>
-                                <a href="../../Milestone/EditMilestone?id=@milestone.ID">Update</a>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <i class="fas fa-pen"></i>
+                                    <a href="../../Milestone/EditMilestone?id=@milestone.ID">Update</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="fas fa-trash"></i>
+                                    <a href="../../Milestone/Delete?id=@milestone.ID">Delete</a>
+                                </div>
                             </div>
-                            <div class="col-md-4">
-                                <i class="fas fa-trash"></i>
-                                <a href="../../Milestone/Delete?id=@milestone.ID">Delete</a>
-                            </div>
-                        </div>
 
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         }
@@ -57,3 +65,19 @@
 </div>
 
 
+<script>
+    var clipboard = new ClipboardJS('.btn');
+
+    clipboard.on('success', function(e) {
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+
+        e.clearSelection();
+    });
+
+    clipboard.on('error', function(e) {
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+    });
+</script>

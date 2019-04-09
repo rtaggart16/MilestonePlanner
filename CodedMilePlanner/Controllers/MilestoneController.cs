@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using CodedMilePlanner.Models;
 using CodedMilePlanner.Models.ViewModels;
 using CodedMilePlanner.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CodedMilePlanner.Controllers
 {
@@ -143,6 +146,24 @@ namespace CodedMilePlanner.Controllers
             _db.SaveChanges();
 
             return RedirectToAction("Milestones", new { id = projectId });
+        }
+        
+        
+        
+        /// <summary>
+        /// get method that allows the user to share a milestone
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Shared(int id)
+        {
+            Response.ContentType = "text/html";
+
+            Milestone milestone = _db.Milestones.FirstOrDefault(x => x.ID == id);
+
+            return View(milestone);
         }
     }
 }

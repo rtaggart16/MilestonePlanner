@@ -27,16 +27,29 @@
     <link href="~/css/card.css" rel="stylesheet" />
     <!-- END: Stylesheet Files -->
     <!-- Script Files -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" async></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/js/navbar.js" async></script>
     <!-- END: Script Files -->
 </head>
 <body style="background: url('/images/Home/home-banner.jpg') no-repeat center fixed; height:100vh;">
-    @await Html.PartialAsync("~/Views/Shared/Layout/_Navbar.cshtml")
+    @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
-    <div class="container body-content" >
+    @{
+        if (HttpContextAccessor.HttpContext.Request.Cookies.ContainsKey("cmAuthToken"))
+        {
+            @await Html.PartialAsync("~/Views/Shared/Layout/_LoggedInNavbar.cshtml")
+        }
+        else
+        {
+            @await Html.PartialAsync("~/Views/Shared/Layout/_Navbar.cshtml")
+        }
+    }
+
+
+    <div class="container body-content">
         @RenderBody()
 
         <hr />
@@ -47,6 +60,7 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
 
 
 
