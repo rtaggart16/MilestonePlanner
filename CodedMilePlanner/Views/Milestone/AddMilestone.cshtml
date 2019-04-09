@@ -9,7 +9,7 @@
     <div class="col-md-3">
     </div>
     <div class="card login-card col-md-6">
-        <div class="card-header h2">Add a Project</div>
+        <div class="card-header h2">Add a Milestone</div>
         <div class="card-body">
             <form asp-controller="Milestone" asp-action="AddMilestone" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
 
@@ -31,14 +31,15 @@
 
                 <div>
                     <span><i class="fas fa-calendar-alt"></i> Due Date</span>
-                    <div class="form-group" style="margin-top:1em;margin-bottom:1em;">
+                    <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
+                        <div class="col-sm-6">
                             @Html.EditorFor(x => x.Due_Date, new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.Due_Date)
+                        </div>
                     </div>
                 </div>
 
                 <br />
-
                 @Html.HiddenFor(x => x.Project_ID)
 
                 <div class="form-group">
