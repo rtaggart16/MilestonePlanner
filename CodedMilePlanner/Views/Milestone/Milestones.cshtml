@@ -15,14 +15,16 @@
         {
             <div class="col-md-6">
                 <div class="card project-card">
-                    <div class="card-header h2">@milestone.Name</div>
-                    <div class="card-body">
-
+                    <div class="card-header h2">@milestone.Name
                         <div>
                             <button class="btn clipboardButton" data-clipboard-text="@("http://localhost:56030/Milestone/Shared?id="+Model.ID)">
                                 <i class="fas fa-share-square"></i>
                             </button>
                         </div>
+                    </div>
+                    <div class="card-body">
+
+                        
 
 
                         <form asp-controller="Project" asp-action="EditProject" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
@@ -46,11 +48,11 @@
                             <br />
 
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                     <i class="fas fa-pen"></i>
                                     <a href="../../Milestone/EditMilestone?id=@milestone.ID">Update</a>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <i class="fas fa-trash"></i>
                                     <a href="../../Milestone/Delete?id=@milestone.ID">Delete</a>
                                 </div>
