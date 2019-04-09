@@ -33,18 +33,21 @@ namespace CodedMilePlanner.Controllers
 
         private readonly ICodedMileCookieCutter _cookieCutter;
 
+        private readonly IHelper _helper;
+
         /// <summary>
         /// Constructor for the UserController that handles dependency injection
         /// </summary>
         /// <param name="userManager">Instance of UserManager class that will be used to initialise the global private instance</param>
         /// <param name="db">Instance of MilestoneDb class that will be used to initialise the global private instance</param>
         /// <param name="signInManager">Instance of SignInManager class that will be used to initialise the global private instance</param>
-        public UserController(UserManager<User> userManager, MilestoneDb db, SignInManager<User> signInManager, ICodedMileCookieCutter cookieCutter)
+        public UserController(UserManager<User> userManager, MilestoneDb db, SignInManager<User> signInManager, ICodedMileCookieCutter cookieCutter, IHelper helper)
         {
             _userManager = userManager;
             _db = db;
             _signInManager = signInManager;
             _cookieCutter = cookieCutter;
+            _helper = helper;
         }
 
         /// <summary>
@@ -72,7 +75,7 @@ namespace CodedMilePlanner.Controllers
             {
                 // Gets the user using the email of the model
                 User user = _db.Users.FirstOrDefault(x => x.Email == model.Email);
-
+                
                 // Signs in the user using the SignInManager
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, lockoutOnFailure: false);
 
@@ -114,9 +117,16 @@ namespace CodedMilePlanner.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            Result result = new Result();
+
+            RegisterModel model = new RegisterModel
+            {
+                Result = result.CreateResult(true, "")
+            };
+
             // Specifies the content type of the response (HTML)
             Response.ContentType = "text/html";
-            return View();
+            return View(model);
         }
 
         /// <summary>
@@ -142,22 +152,44 @@ namespace CodedMilePlanner.Controllers
                 try
                 {
                     // Creates the user using the UserManager
-                    await _userManager.CreateAsync(user, model.Password);
+                    var result = await _userManager.CreateAsync(user, model.Password);
 
-                    CookieCutterModel cookieCutterModel = new CookieCutterModel
+                    if(result.Succeeded)
                     {
-                        User_ID = user.Id
-                    };
+                        _userManager.AddToRoleAsync(user, "User").Wait();
+                        _userManager.AddClaimsAsync(user, _helper.GetUserBasicClaims()).Wait();
 
-                    CookieResultModel cookieModel = _cookieCutter.CreateCodedMileCookie(cookieCutterModel, CodedMileCookieTypes.Authorisation);
+                        var signInResult = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, lockoutOnFailure: false);
 
-                    Response.Cookies.Append(cookieModel.Key, cookieModel.Value);
+                        if(signInResult.Succeeded)
+                        {
+                            CookieCutterModel cookieCutterModel = new CookieCutterModel
+                            {
+                                User_ID = user.Id
+                            };
+
+                            CookieResultModel cookieModel = _cookieCutter.CreateCodedMileCookie(cookieCutterModel, CodedMileCookieTypes.Authorisation);
+
+                            Response.Cookies.Append(cookieModel.Key, cookieModel.Value);
+
+                            // Specifies the content type of the response (HTML)
+                            Response.ContentType = "text/html";
+
+                            // Redirects the user to the Projects Action
+                            return RedirectToAction("Projects", "Project");
+                        }
+
+                        
+                    }
+
+                    Result modelResult = new Result();
+
+                    model.Result = modelResult.CreateResult(false, "There was an error registering you");
 
                     // Specifies the content type of the response (HTML)
                     Response.ContentType = "text/html";
+                    return View(model);
 
-                    // Redirects the user to the Projects Action
-                    return RedirectToAction("Projects", "Project");
                 }
                 catch (Exception ex)
                 {
