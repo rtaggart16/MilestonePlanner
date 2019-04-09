@@ -1,36 +1,45 @@
-﻿@{
+﻿@*
+    Date Created - 02/04/2019
+    Version - 1.0.0
+
+    Description:
+    content and layout of the front page viewable to the user
+    
+*@
+
+@{
     ViewData["Title"] = "Home";
     Layout = "~/Views/Shared/Layout/_Layout.cshtml";
 }
 
 
 
-    <div class="banner-outer jumbotron" id="banner" style="background: no-repeat center; padding-bottom:100px; color:white;">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="banner-header">
+<div class="banner-outer jumbotron" id="banner" style="background: no-repeat center; padding-bottom:100px; color:white;">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="banner-header">
 
 
-                    <h1>Coded Mile</h1>
-                    <h1>Milestone Planner</h1>
+                <h1>Coded Mile</h1>
+                <h1>Milestone Planner</h1>
 
-                </div>
-                <p>
-                    An average milestone planner
-                    for the average person.
-                </p>
-
-                <a class="btn btn-light" href="~/User/Register">Sign Up Now</a>
             </div>
-            <div class="col-md-5 index-projects-list">
-                <h2>My Projects</h2>
-                <img src="~/images/Home/index-card-1.png" class="animated fadeInUp" style="animation-delay:1.5s;" />
-                <img src="~/images/Home/index-card-2.png" class="animated fadeInUp" style="animation-delay:2s;" />
-                <img src="~/images/Home/index-card-3.png" class="animated fadeInUp" style="animation-delay:2.5s;" />
-                <img src="~/images/Home/index-card-4.png" class="animated fadeInUp" style="animation-delay:3s;" />
-            </div>
+            <p>
+                An average milestone planner
+                for the average person.
+            </p>
+
+            <a class="btn btn-light" href="~/User/Register">Sign Up Now</a>
+        </div>
+        <div class="col-md-5 index-projects-list">
+            <h2>My Projects</h2>
+            <img src="~/images/Home/index-card-1.png" class="animated fadeInUp" style="animation-delay:1.5s;" />
+            <img src="~/images/Home/index-card-2.png" class="animated fadeInUp" style="animation-delay:2s;" />
+            <img src="~/images/Home/index-card-3.png" class="animated fadeInUp" style="animation-delay:2.5s;" />
+            <img src="~/images/Home/index-card-4.png" class="animated fadeInUp" style="animation-delay:3s;" />
         </div>
     </div>
+</div>
 
 
 
