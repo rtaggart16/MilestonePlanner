@@ -17,9 +17,11 @@
                     <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
                         <div class="col-sm-6">
                             @Html.TextBoxFor(x => x.First_Name, new { @class = "form-control", placeholder = "First Name" })
+                            @Html.ValidationMessageFor(x => x.First_Name)
                         </div>
                         <div class="col-sm-6">
                             @Html.TextBoxFor(x => x.Last_Name, new { @class = "form-control", placeholder = "Last Name" })
+                            @Html.ValidationMessageFor(x => x.Last_Name)
                         </div>
                     </div>
                 </div>
@@ -29,6 +31,7 @@
                 <div>
                     <span> <i class="fas fa-envelope"></i> Email</span>
                     @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Email" })
+                    @Html.ValidationMessageFor(x => x.Email)
                 </div>
 
                 <br />
@@ -38,9 +41,11 @@
                     <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
                         <div class="col-sm-6">
                             @Html.PasswordFor(x => x.Password, new { @class = "form-control", placeholder = "Password" })
+                            @Html.ValidationMessageFor(x => x.Password)
                         </div>
                         <div class="col-sm-6">
                             @Html.PasswordFor(x => x.Confirm_Password, new { @class = "form-control", placeholder = "Confirm Password" })
+                            @Html.ValidationMessageFor(x => x.Confirm_Password)
                         </div>
                     </div>
                 </div>

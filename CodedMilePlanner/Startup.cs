@@ -38,8 +38,8 @@ namespace CodedMilePlanner
             //Identity Password Rules
             services.Configure<IdentityOptions>(o =>
             {
-                o.Password.RequireNonAlphanumeric = false;
-                o.Password.RequireLowercase = false;
+                o.Password.RequireNonAlphanumeric = true;
+                o.Password.RequireLowercase = true;
                 o.Password.RequireUppercase = true;
                 o.Password.RequireDigit = true;
                 o.Password.RequiredLength = 8;

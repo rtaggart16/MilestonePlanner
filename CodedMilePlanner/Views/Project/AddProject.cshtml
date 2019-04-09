@@ -15,6 +15,7 @@
                 <div>
                     <span> <i class="fas fa-project-diagram"></i> Name</span>
                     @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Name of Project" })
+                    @Html.ValidationMessageFor(x => x.Name)
                 </div>
 
                 <br />
@@ -22,6 +23,7 @@
                 <div>
                     <span> <i class="fas fa-align-left"></i> Description</span>
                     @Html.TextBoxFor(x => x.Description, new { @class = "form-control", placeholder = "Description" })
+                    @Html.ValidationMessageFor(x => x.Description)
                 </div>
 
                 <br />
@@ -31,9 +33,11 @@
                     <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
                         <div class="col-sm-6">
                             @Html.EditorFor(x => x.Start_Time, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.Start_Time)
                         </div>
                         <div class="col-sm-6">
                             @Html.EditorFor(x => x.End_Time, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.End_Time)
                         </div>
                     </div>
                 </div>
