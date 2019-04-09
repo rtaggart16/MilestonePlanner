@@ -31,17 +31,13 @@
 
                 <div>
                     <span><i class="fas fa-calendar-alt"></i> Due Date</span>
-                    <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
-                        <div class="col-sm-6">
+                    <div class="form-group" style="margin-top:1em;margin-bottom:1em;">
                             @Html.EditorFor(x => x.Due_Date, new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.Due_Date)
-                        </div>
                     </div>
                 </div>
 
                 <br />
-
-                Project ID - @Model.Project_ID
 
                 @Html.HiddenFor(x => x.Project_ID)
 
