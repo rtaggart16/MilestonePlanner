@@ -215,7 +215,6 @@ namespace CodedMilePlanner.Controllers
             if(hasCookie == true)
             {
                 var cookieToRemove = HttpContext.Request.Cookies.ToList().FirstOrDefault(x => x.Key == "cmAuthToken");
-
                 HttpContext.Request.Cookies.ToList().Remove(cookieToRemove);
             }
 
