@@ -207,5 +207,14 @@ namespace CodedMilePlanner.Controllers
             }
             
         }
+
+        [HttpGet]
+        [Route("api/user/check/status")]
+        public bool CheckIfUserIsLoggedIn()
+        {
+            var model = _cookieCutter.CheckForCodedMileCookie(CodedMileCookieTypes.Authorisation, HttpContext.Request.Cookies.ToList());
+
+            return model.HasCookie;
+        }
     }
 }
