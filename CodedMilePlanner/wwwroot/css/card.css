@@ -16,10 +16,11 @@
 
 
 .login-card {
-    width:calc(100% - 4em);
-    padding:1em;
-    margin:1em;
-    text-align:center;
+    padding: 1em;
+    width: calc(100% - 4em);
+    padding: 1em;
+    margin: 1em;
+    text-align: center;
 }
 
 .card-header {
