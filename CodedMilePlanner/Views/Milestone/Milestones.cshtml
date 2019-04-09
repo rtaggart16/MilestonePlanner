@@ -19,7 +19,7 @@
                     <div class="card-body">
 
                         <div>
-                            <button class="btn clipboardButton" data-clipboard-text="@("http://localhost:56030/Milestone/Shared?id="+Model.ID)">
+                            <button id="@("M"+milestone.ID)" class="btn clipboardButton" onclick="copyMilestone(@milestone.ID)" data-clipboard-text="@("http://localhost:56030/Milestone/Shared?id="+milestone.ID)">
                                 <i class="fas fa-share-square"></i>
                             </button>
                         </div>
@@ -39,7 +39,7 @@
                             <div>
                                 <span><i class="fas fa-calendar-alt"></i> <b>Milestones Due Date</b></span>
                                 <div class=" form-group" style="margin-top:1em;margin-bottom:1em;">
-                                        @milestone.Due_Date.ToShortDateString()
+                                        @milestone.Due_Date
                                 </div>
                             </div>
 
