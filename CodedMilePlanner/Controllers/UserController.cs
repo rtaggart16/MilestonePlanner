@@ -212,10 +212,10 @@ namespace CodedMilePlanner.Controllers
         public IActionResult Logout()
         {
             bool hasCookie = _cookieCutter.RemoveCodedMileCookie(CodedMileCookieTypes.Authorisation, HttpContext.Request.Cookies.ToList());
+
             if(hasCookie == true)
             {
-                var cookieToRemove = HttpContext.Request.Cookies.ToList().FirstOrDefault(x => x.Key == "cmAuthToken");
-                HttpContext.Request.Cookies.ToList().Remove(cookieToRemove);
+                Response.Cookies.Delete("cmAuthToken");
             }
 
             Response.ContentType = "text/html";

@@ -19,7 +19,7 @@
                     <div class="card-body">
 
                         <div>
-                            <button class="btn" data-clipboard-text="@("http://localhost:56030/Milestone/Shared?id="+milestone.ID)">
+                            <button class="btn clipboardButton" data-clipboard-text="@("http://localhost:56030/Milestone/Shared?id="+Model.ID)">
                                 <i class="fas fa-share-square"></i>
                             </button>
                         </div>
@@ -63,21 +63,3 @@
         }
     </div>
 </div>
-
-
-<script>
-    var clipboard = new ClipboardJS('.btn');
-
-    clipboard.on('success', function(e) {
-        console.info('Action:', e.action);
-        console.info('Text:', e.text);
-        console.info('Trigger:', e.trigger);
-
-        e.clearSelection();
-    });
-
-    clipboard.on('error', function(e) {
-        console.error('Action:', e.action);
-        console.error('Trigger:', e.trigger);
-    });
-</script>
