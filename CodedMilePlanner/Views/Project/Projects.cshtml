@@ -7,7 +7,7 @@
     <h2 class="projects-header">
         My Projects
         <a href="../../Project/AddProject">
-            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+            <i id="addButton" class="fas fa-plus-circle" aria-hidden="true"></i>
         </a>
     </h2>
 
@@ -32,51 +32,52 @@
         <div class="row">
             @foreach (CodedMilePlanner.Models.Project project in Model)
             {
+                <div class="col-md-6">
+                    <div class="card project-card">
+                        <div class="card-header h2">@project.Name</div>
+                        <div class="card-body">
+                            <form asp-controller="Project" asp-action="EditProject" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
 
-                <div class="card login-card col-md-6">
-                    <div class="card-header h2">@project.Name</div>
-                    <div class="card-body">
-                        <form asp-controller="Project" asp-action="EditProject" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                                <div>
+                                    <span> <i class="fas fa-align-left"></i> <b>Description</b></span>
+                                </div>
+                                <div>
+                                    @project.Description
+                                </div>
 
-                            <div>
-                                <span> <i class="fas fa-align-left"></i> <b>Description</b></span>
-                            </div>
-                            <div>
-                                @project.Description
-                            </div>
+                                <br />
 
-                            <br />
-
-                            <div>
-                                <span><i class="fas fa-calendar-alt"></i> <b>Project Start and End</b></span>
-                                <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
-                                    <div class="col-sm-6">
-                                        @project.Start_Time
+                                <div>
+                                    <span><i class="fas fa-calendar-alt"></i> <b>Project Start and End</b></span>
+                                    <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
+                                        <div class="col-sm-6">
+                                            @project.Start_Time
+                                        </div>
+                                        <div class="col-sm-6">
+                                            @project.End_Time
+                                        </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        @project.End_Time
+                                </div>
+
+                                <br />
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <i class="fas fa-pen"></i>
+                                        <a href="../../Project/EditProject?id=@project.ID">Update</a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <i class="fas fa-trash"></i>
+                                        <a href="../../Project/Delete?id=@project.ID">Delete</a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <i class="fas fa-project-diagram"></i>
+                                        <a href="../../Milestone/Milestones?id=@project.ID">Milestones</a>
                                     </div>
                                 </div>
-                            </div>
 
-                            <br />
-
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <i class="fas fa-pen"></i>
-                                    <a href="../../Project/EditProject?id=@project.ID">Update</a>
-                                </div>
-                                <div class="col-md-4">
-                                    <i class="fas fa-trash"></i>
-                                    <a href="../../Project/Delete?id=@project.ID">Delete</a>
-                                </div>
-                                <div class="col-md-4">
-                                    <i class="fas fa-project-diagram"></i>
-                                    <a href="../../Milestone/Milestones?id=@project.ID">Milestones</a>
-                                </div>
-                            </div>
-
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             }

@@ -1,0 +1,34 @@
+﻿@model CodedMilePlanner.Models.Milestone
+@{
+    ViewData["Title"] = "Shared";
+    Layout = "~/Views/Shared/Layout/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6">
+        <div class="card project-card">
+            <div class="card-header h2">@Model.Name</div>
+            <div class="card-body">
+
+                <div>
+                    <span> <i class="fas fa-align-left"></i> <b>Description</b></span>
+                </div>
+                <div>
+                    @Model.Description
+                </div>
+
+                <br />
+
+                <div>
+                    <span><i class="fas fa-calendar-alt"></i> <b>Milestone Due Date</b></span>
+                    <div class="form-group" style="margin-top:1em;margin-bottom:1em;">
+                            @Model.Due_Date
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3"></div>
+</div>
