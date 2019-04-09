@@ -51,10 +51,10 @@
                                     <span><i class="fas fa-calendar-alt"></i> <b>Project Start and End</b></span>
                                     <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
                                         <div class="col-sm-6">
-                                            @project.Start_Time
+                                            @project.Start_Time.ToShortDateString()
                                         </div>
                                         <div class="col-sm-6">
-                                            @project.End_Time
+                                            @project.End_Time.ToShortDateString()
                                         </div>
                                     </div>
                                 </div>
