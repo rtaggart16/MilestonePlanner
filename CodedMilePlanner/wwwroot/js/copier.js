@@ -29,3 +29,4 @@ function copyMilestone(id) {
         trigger: 'click',
         placement: 'bottom'
     });
+}
