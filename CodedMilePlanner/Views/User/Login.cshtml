@@ -15,6 +15,7 @@
                 <div>
                     <span> <i class="fas fa-user"></i> Email</span>
                     @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Email)
                 </div>
 
                 <br />
@@ -22,6 +23,7 @@
                 <div>
                     <span><i class="fas fa-key"></i> Password</span>
                     @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Password)
                 </div>
 
                 <br />
