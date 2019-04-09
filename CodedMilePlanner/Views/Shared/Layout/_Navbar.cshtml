@@ -24,16 +24,9 @@
                     <li class="nav-item"><a class="nav-link" href="~/User/Register">Register</a></li>
                     @if (User.HasClaim("hasSiteAccess", "true"))
                     {
-                        <li class="nav-item submenu dropdown">
+                        <li class="nav-item">
 
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Projects</a>
-
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="elements.html">Project 1</a></li>
-                                <li class="nav-item"><a class="nav-link" href="elements.html">Project 2</a></li>
-                                <li class="nav-item"><a class="nav-link" href="elements.html">Project 3</a></li>
-                                <li class="nav-item"><a class="nav-link" href="elements.html">Project 4</a></li>
-                            </ul>
+                            <a href="~/Project/Projects" class="nav-link">My Projects</a>
                         </li>
                     }
 
