@@ -207,5 +207,19 @@ namespace CodedMilePlanner.Controllers
             }
             
         }
+
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            bool hasCookie = _cookieCutter.RemoveCodedMileCookie(CodedMileCookieTypes.Authorisation, HttpContext.Request.Cookies.ToList());
+
+            if(hasCookie == true)
+            {
+                Response.Cookies.Delete("cmAuthToken");
+            }
+
+            Response.ContentType = "text/html";
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

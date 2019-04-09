@@ -3,7 +3,7 @@
     Version - 1.0.0
 
     Description:
-    Consistent navbar used throughout the application
+    Consistent navbar for logged in users used throughout the application
 *@
 
 <div class="main_menu" id="mainNav" , style="background-image: url('/images/NavBar/banner.jpg');">
@@ -19,14 +19,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                 <ul class="nav navbar-nav menu_nav ml-auto">
+                    <li class="nav-item">
+                        <a href="~/Project/Projects" class="nav-link">My Projects</a>
+                    </li>
 
-                    <li class="nav-item"><a class="nav-link" href="~/User/Login">Log In</a></li>
-                    <li class="nav-item"><a class="nav-link" href="~/User/Register">Register</a></li>
-
+                    <li class="nav-item"><a class="nav-link" href="~/User/Logout">Log Out</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 </div>
 <br />
-

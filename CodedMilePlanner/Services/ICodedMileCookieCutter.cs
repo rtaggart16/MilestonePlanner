@@ -1,12 +1,8 @@
 ﻿using CodedMilePlanner.Database;
 using CodedMilePlanner.Models;
 using CodedMilePlanner.Models.ServiceModels;
-using Microsoft.AspNetCore.Http;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 
 namespace CodedMilePlanner.Services
 {
@@ -15,6 +11,8 @@ namespace CodedMilePlanner.Services
         CookieResultModel CreateCodedMileCookie(CookieCutterModel model, CodedMileCookieTypes type);
 
         CheckForCookieModel CheckForCodedMileCookie(CodedMileCookieTypes type, List<KeyValuePair<string, string>> cookies);
+
+        bool RemoveCodedMileCookie(CodedMileCookieTypes type, List<KeyValuePair<string, string>> cookies);
     }
 
     public class CodedMileCookieCutter : ICodedMileCookieCutter
@@ -52,7 +50,7 @@ namespace CodedMilePlanner.Services
                 Value = ""
             };
 
-            switch(type)
+            switch (type)
             {
                 case CodedMileCookieTypes.Authorisation:
                     if (cookies.Where(x => x.Key == "cmAuthToken").Count() > 0)
@@ -72,7 +70,7 @@ namespace CodedMilePlanner.Services
 
             var existingDbToken = _db.User_Auth_Tokens.FirstOrDefault(x => x.User_ID == model.User_ID);
 
-            if(existingDbToken == null)
+            if (existingDbToken == null)
             {
                 UserAuthorisationToken dbToken = new UserAuthorisationToken
                 {
@@ -88,7 +86,7 @@ namespace CodedMilePlanner.Services
 
                 _db.User_Auth_Tokens.Update(existingDbToken);
             }
-            
+
             _db.SaveChanges();
 
             CookieResultModel result = new CookieResultModel
@@ -99,12 +97,30 @@ namespace CodedMilePlanner.Services
 
             return result;
         }
+
+        public bool RemoveCodedMileCookie(CodedMileCookieTypes type, List<KeyValuePair<string, string>> cookies)
+        {
+            bool model = false;
+            switch (type)
+            {
+                case CodedMileCookieTypes.Authorisation:
+                    if (cookies.Where(x => x.Key == "cmAuthToken").Count() > 0)
+                    {
+                        model = true;
+                    }
+                    break;
+
+            }
+            return model;
+        }
     }
 
-    
+
 
     public enum CodedMileCookieTypes
     {
         Authorisation = 0
     }
+
+
 }
