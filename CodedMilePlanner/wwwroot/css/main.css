@@ -30,14 +30,14 @@ h1, h2, h3 {
     color: white;
 }
 
-    .milestone-header a {
-        color: white;
-    }
+.milestone-header a {
+    color: white;
+}
 
-        .milestone-header a:hover {
-            color: white;
-            text-decoration: none;
-        }
+.milestone-header a:hover {
+    color: white;
+    text-decoration: none;
+}
 
 
 
@@ -67,14 +67,14 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #8342FC;
+    background: #2a2a2a;
     border-radius: 10px;
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #9F37FD;
-}
+    ::-webkit-scrollbar-thumb:hover {
+        background: #696969;
+    }
 
 
 

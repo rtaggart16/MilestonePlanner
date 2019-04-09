@@ -1,5 +1,7 @@
 ﻿using CodedMilePlanner.Database;
 using CodedMilePlanner.Models;
+using CodedMilePlanner.Models.ServiceModels;
+using CodedMilePlanner.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,15 +24,18 @@ namespace CodedMilePlanner.Controllers
         /// </summary>
         private readonly UserManager<User> _userManager;
 
+        private readonly ICodedMileCookieCutter _cookieCutter;
+
         /// <summary>
         /// Constructor for the ProjectController that handles dependency injection
         /// </summary>
         /// <param name="db">Instance of MilestoneDb class that will be used to initialise the global private instance</param>
         /// <param name="userManager">Instance of UserManager class that will be used to initialise the global private instance</param>
-        public ProjectController(MilestoneDb db, UserManager<User> userManager)
+        public ProjectController(MilestoneDb db, UserManager<User> userManager, ICodedMileCookieCutter cookieCutter)
         {
             _db = db;
             _userManager = userManager;
+            _cookieCutter = cookieCutter;
         }
 
         /// <summary>
@@ -40,14 +45,28 @@ namespace CodedMilePlanner.Controllers
         [HttpGet]
         public IActionResult Projects()
         {
-            // Gets a list of all projects that belong to the current logged in user
-            List<Project> projects = _db.Projects.Where(x => x.User_ID == _userManager.GetUserId(User)).ToList();
+            var model = _cookieCutter.CheckForCodedMileCookie(CodedMileCookieTypes.Authorisation, HttpContext.Request.Cookies.ToList());
+            
+            if(model.HasCookie)
+            {
+                string userID = _db.User_Auth_Tokens.FirstOrDefault(x => x.Value == model.Value).User_ID;
+
+                // Gets a list of all projects that belong to the current logged in user
+                List<Project> projects = _db.Projects.Where(x => x.User_ID == userID).ToList();
+
+                // Specifies the content type of the response (HTML)
+                Response.ContentType = "text/html";
+
+                // Returns the Projects view passing in the user's projects
+                return View(projects);
+            }
 
             // Specifies the content type of the response (HTML)
             Response.ContentType = "text/html";
 
-            // Returns the Projects view passing in the user's projects
-            return View(projects);
+            // Redirects the user to the Login Action
+            return RedirectToAction("Login", "User");
+
         }
 
         /// <summary>
@@ -70,17 +89,30 @@ namespace CodedMilePlanner.Controllers
         [HttpPost]
         public IActionResult AddProject(Project model)
         {
-            // Creates a new Project by using the constructor defined in the Project class (Project.cs)
-            Project project = new Project(model.Name, model.Start_Time, model.End_Time, model.Description, _userManager.GetUserId(User));
+            var authCookieModel = _cookieCutter.CheckForCodedMileCookie(CodedMileCookieTypes.Authorisation, HttpContext.Request.Cookies.ToList());
 
-            // Add the project to the database
-            _db.Projects.Add(project);
+            if (authCookieModel.HasCookie)
+            {
+                string userID = _db.User_Auth_Tokens.FirstOrDefault(x => x.Value == authCookieModel.Value).User_ID;
 
-            // Saves the changes made to the database
-            _db.SaveChanges();
+                // Creates a new Project by using the constructor defined in the Project class (Project.cs)
+                Project project = new Project(model.Name, model.Start_Time, model.End_Time, model.Description, userID);
 
-            // Redirect the user to the Projects page
-            return RedirectToAction("Projects");
+                // Add the project to the database
+                _db.Projects.Add(project);
+
+                // Saves the changes made to the database
+                _db.SaveChanges();
+
+                // Redirect the user to the Projects page
+                return RedirectToAction("Projects");
+            }
+
+            // Specifies the content type of the response (HTML)
+            Response.ContentType = "text/html";
+
+            // Redirects the user to the Login Action
+            return RedirectToAction("Login", "User");
         }
 
         /// <summary>

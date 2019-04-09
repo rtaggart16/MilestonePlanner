@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CodedMilePlanner.Database;
 using CodedMilePlanner.Models;
+using CodedMilePlanner.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -37,21 +38,41 @@ namespace CodedMilePlanner
             //Identity Password Rules
             services.Configure<IdentityOptions>(o =>
             {
-                o.Password.RequireNonAlphanumeric = false;
-                o.Password.RequireLowercase = false;
+                o.Password.RequireNonAlphanumeric = true;
+                o.Password.RequireLowercase = true;
                 o.Password.RequireUppercase = true;
                 o.Password.RequireDigit = true;
                 o.Password.RequiredLength = 8;
             });
+
+            services.AddTransient<ICodedMileCookieCutter, CodedMileCookieCutter>();
+            services.AddTransient<ICodedMileServiceHelper, CodedMileServiceHelper>();
+            services.AddTransient<IHelper, Helper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+
+                try
+                {
+                    using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+
+                    {
+                        var db = serviceScope.ServiceProvider.GetService<MilestoneDb>();
+
+                        db.Database.Migrate();//run migrations
+                        db.SeedRoles(roleManager);
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("Exception: " + e.Message);
+                }
             }
             else
             {

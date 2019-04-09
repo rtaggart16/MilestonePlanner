@@ -36,5 +36,7 @@ namespace CodedMilePlanner.Models.ViewModels
         /// </summary>
         [Required]
         public string Email { get; set; }
+
+        public Result Result { get; set; }
     }
 }

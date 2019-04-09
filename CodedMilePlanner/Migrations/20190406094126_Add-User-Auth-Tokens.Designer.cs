@@ -11,9 +11,10 @@ using System;
 namespace CodedMilePlanner.Migrations
 {
     [DbContext(typeof(MilestoneDb))]
-    partial class MilestoneDbModelSnapshot : ModelSnapshot
+    [Migration("20190406094126_Add-User-Auth-Tokens")]
+    partial class AddUserAuthTokens
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,13 +28,11 @@ namespace CodedMilePlanner.Migrations
 
                     b.Property<DateTime?>("Action_Completion_Date");
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(150);
+                    b.Property<string>("Description");
 
                     b.Property<DateTime>("Due_Date");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(60);
+                    b.Property<string>("Name");
 
                     b.Property<int>("Project_ID");
 
@@ -49,13 +48,11 @@ namespace CodedMilePlanner.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(150);
+                    b.Property<string>("Description");
 
                     b.Property<DateTime>("End_Time");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(150);
+                    b.Property<string>("Name");
 
                     b.Property<DateTime>("Start_Time");
 

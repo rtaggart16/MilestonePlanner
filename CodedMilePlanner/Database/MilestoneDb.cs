@@ -1,4 +1,5 @@
 ﻿using CodedMilePlanner.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -18,11 +19,6 @@ namespace CodedMilePlanner.Database
     public class MilestoneDb : IdentityDbContext<User>
     {
         /// <summary>
-        /// Table that contains User information
-        /// </summary>
-        public DbSet<User> Users { get; set; }
-
-        /// <summary>
         /// Table that contains Project information
         /// </summary>
         public DbSet<Project> Projects { get; set; }
@@ -31,6 +27,8 @@ namespace CodedMilePlanner.Database
         /// Table that contains Milestone information
         /// </summary>
         public DbSet<Milestone> Milestones { get; set; }
+
+        public DbSet<UserAuthorisationToken> User_Auth_Tokens { get; set; }
 
         /// <summary>
         /// Empty constructor that initialises the database
@@ -64,6 +62,28 @@ namespace CodedMilePlanner.Database
 
             builder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             return new MilestoneDb(builder.Options);
+        }
+
+        
+    }
+
+    public static class MilestoneExtensions
+    {
+        public static void SeedRoles(this MilestoneDb _db, RoleManager<IdentityRole> roleManager)
+        {
+            seedRoles(roleManager);
+        }
+
+        public static void seedRoles(RoleManager<IdentityRole> roleManager)
+        {
+            if (!roleManager.RoleExistsAsync("User").Result)
+            {
+                IdentityRole role = new IdentityRole();
+                role.Name = "User";
+                IdentityResult roleResult = roleManager.
+                CreateAsync(role).Result;
+
+            }
         }
     }
 }
