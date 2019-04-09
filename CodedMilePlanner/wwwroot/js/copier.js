@@ -1,32 +1,31 @@
-// Tooltip
 
-$('.clipboardButton').tooltip({
-    trigger: 'click',
-    placement: 'bottom'
-});
+function copyMilestone(id) {
 
-function setTooltip(message) {
-    $('.clipboardButton').tooltip('hide')
-        .attr('data-original-title', message)
-        .tooltip('show');
-}
+    function hideTooltip() {
+        setTimeout(function () {
+            $('#M' + id).tooltip('hide');
+        }, 1000);
+    }
 
-function hideTooltip() {
-    setTimeout(function () {
-        $('.clipboardButton').tooltip('hide');
-    }, 1000);
-}
+    function setTooltip(message) {
+        $('#M' + id).tooltip('hide')
+            .attr('data-original-title', message)
+            .tooltip('show');
+    }
 
-// Clipboard
+    var clipboard = new ClipboardJS('#M' + id);
 
-var clipboard = new ClipboardJS('.clipboardButton');
+    clipboard.on('success', function (e) {
+        setTooltip('Copied!');
+        hideTooltip();
+    });
 
-clipboard.on('success', function (e) {
-    setTooltip('Copied!');
-    hideTooltip();
-});
+    clipboard.on('error', function (e) {
+        setTooltip('Failed!');
+        hideTooltip();
+    });
 
-clipboard.on('error', function (e) {
-    setTooltip('Failed!');
-    hideTooltip();
-});
+    $('#M' + id).tooltip({
+        trigger: 'click',
+        placement: 'bottom'
+    });
