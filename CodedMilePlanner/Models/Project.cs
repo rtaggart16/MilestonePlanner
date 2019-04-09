@@ -24,21 +24,29 @@ namespace CodedMilePlanner.Models
         /// <summary>
         /// Attribute for the name of the project
         /// </summary>
+        /// 
+        [StringLength(150, MinimumLength = 3, ErrorMessage = "The length of the project name is either too short or too long")]
         public string Name { get; set; }
 
         /// <summary>
         /// Attribute for the start time of the project
         /// </summary>
+        /// 
+        [DataType(DataType.Date)]
         public DateTime Start_Time { get; set; }
 
         /// <summary>
         /// Attribute for the end time of the project
         /// </summary>
+        /// 
+        [DataType(DataType.Date)]
         public DateTime End_Time { get; set; }
 
         /// <summary>
         /// Attribute for the description of the project
         /// </summary>
+        /// 
+        [StringLength(150, MinimumLength = 3, ErrorMessage = "The length of the project description is either too short or too long")]
         public string Description { get; set; }
 
         /// <summary>

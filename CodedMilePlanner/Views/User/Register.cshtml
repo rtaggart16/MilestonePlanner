@@ -10,6 +10,10 @@
     </div>
     <div class="card login-card col-md-6">
         <div class="card-header h2">Register</div>
+        @if (Model.Result.Success == false)
+        {
+            <span class="alert-danger">@Model.Result.Message</span>
+        }
         <div class="card-body">
             <form asp-controller="User" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
                 <div>

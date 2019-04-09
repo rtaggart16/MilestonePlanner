@@ -47,15 +47,32 @@ namespace CodedMilePlanner
 
             services.AddTransient<ICodedMileCookieCutter, CodedMileCookieCutter>();
             services.AddTransient<ICodedMileServiceHelper, CodedMileServiceHelper>();
+            services.AddTransient<IHelper, Helper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+
+                try
+                {
+                    using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+
+                    {
+                        var db = serviceScope.ServiceProvider.GetService<MilestoneDb>();
+
+                        db.Database.Migrate();//run migrations
+                        db.SeedRoles(roleManager);
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("Exception: " + e.Message);
+                }
             }
             else
             {

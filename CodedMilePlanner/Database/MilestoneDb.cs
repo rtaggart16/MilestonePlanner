@@ -1,4 +1,5 @@
 ﻿using CodedMilePlanner.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -61,6 +62,28 @@ namespace CodedMilePlanner.Database
 
             builder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             return new MilestoneDb(builder.Options);
+        }
+
+        
+    }
+
+    public static class MilestoneExtensions
+    {
+        public static void SeedRoles(this MilestoneDb _db, RoleManager<IdentityRole> roleManager)
+        {
+            seedRoles(roleManager);
+        }
+
+        public static void seedRoles(RoleManager<IdentityRole> roleManager)
+        {
+            if (!roleManager.RoleExistsAsync("User").Result)
+            {
+                IdentityRole role = new IdentityRole();
+                role.Name = "User";
+                IdentityResult roleResult = roleManager.
+                CreateAsync(role).Result;
+
+            }
         }
     }
 }

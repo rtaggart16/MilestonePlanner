@@ -22,28 +22,36 @@ namespace CodedMilePlanner.Models
         /// </summary>
         public int Project_ID { get; set; }
 
-      
+
         /// <summary>
         /// Attribute for the milestone name
         /// </summary>
+        /// 
+        [StringLength(60, MinimumLength = 1, ErrorMessage = "The length of the milestone name is either too short or too long")]
         public string Name { get; set; }
 
-        
+
         /// <summary>
         /// Attribute for the description of the milestone
         /// </summary>
+        /// 
+        [StringLength(150, MinimumLength = 3, ErrorMessage = "The length of the milestone description is either too short or too long")]
         public string Description { get; set; }
 
-        
+
         /// <summary>
         /// Attribute for the due date of the milestone
         /// </summary>
+        /// 
+        [DataType(DataType.Date)]
         public DateTime Due_Date { get; set; }
 
         
         /// <summary>
         /// Attribute for the completion date
         /// </summary>
+        /// 
+        [DataType(DataType.Date)]
         public DateTime? Action_Completion_Date { get; set; }
 
         /// <summary>
