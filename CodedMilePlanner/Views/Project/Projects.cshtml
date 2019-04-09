@@ -34,7 +34,12 @@
             {
                 <div class="col-md-6">
                     <div class="card project-card">
-                        <div class="card-header h2">@project.Name</div>
+                        <div class="card-header row">
+                            <div class="h2 col-md-12">@project.Name</div>
+                            <div>
+
+                            </div>
+                        </div>
                         <div class="card-body">
                             <form asp-controller="Project" asp-action="EditProject" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
 

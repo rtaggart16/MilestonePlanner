@@ -147,7 +147,45 @@ namespace CodedMilePlanner.Controllers
         }
         
         
-        
+        /// <summary>
+        /// get method that allows the user to complete a milestone
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult MarkAsComplete(int id)
+        {
+            Milestone milestone = _db.Milestones.FirstOrDefault(x => x.ID == id);
+
+            int projectId = milestone.Project_ID;
+
+            milestone.Action_Completion_Date = DateTime.Now;
+
+            _db.Milestones.Update(milestone);
+
+            _db.SaveChanges();
+
+            return RedirectToAction("Milestones", new { id = projectId });
+        }
+
+        [HttpGet]
+        public IActionResult MarkAsIncomplete(int id)
+        {
+            Milestone milestone = _db.Milestones.FirstOrDefault(x => x.ID == id);
+
+            int projectId = milestone.Project_ID;
+
+            milestone.Action_Completion_Date = null;
+
+            _db.Milestones.Update(milestone);
+
+            _db.SaveChanges();
+
+            return RedirectToAction("Milestones", new { id = projectId });
+        }
+
+
+
         /// <summary>
         /// get method that allows the user to share a milestone
         /// </summary>
