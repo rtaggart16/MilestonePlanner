@@ -18,11 +18,6 @@ namespace CodedMilePlanner.Database
     public class MilestoneDb : IdentityDbContext<User>
     {
         /// <summary>
-        /// Table that contains User information
-        /// </summary>
-        public DbSet<User> Users { get; set; }
-
-        /// <summary>
         /// Table that contains Project information
         /// </summary>
         public DbSet<Project> Projects { get; set; }
@@ -31,6 +26,8 @@ namespace CodedMilePlanner.Database
         /// Table that contains Milestone information
         /// </summary>
         public DbSet<Milestone> Milestones { get; set; }
+
+        public DbSet<UserAuthorisationToken> User_Auth_Tokens { get; set; }
 
         /// <summary>
         /// Empty constructor that initialises the database

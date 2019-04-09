@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CodedMilePlanner.Database;
 using CodedMilePlanner.Models;
+using CodedMilePlanner.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -43,6 +44,9 @@ namespace CodedMilePlanner
                 o.Password.RequireDigit = true;
                 o.Password.RequiredLength = 8;
             });
+
+            services.AddTransient<ICodedMileCookieCutter, CodedMileCookieCutter>();
+            services.AddTransient<ICodedMileServiceHelper, CodedMileServiceHelper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
