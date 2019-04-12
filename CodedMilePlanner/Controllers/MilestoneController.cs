@@ -99,7 +99,7 @@ namespace CodedMilePlanner.Controllers
         [HttpPost]
         public IActionResult EditMilestone(Milestone model)
         {
-            Milestone updateMilestone = model.updateMilestone(model.Name, model.Description, model.Due_Date, model.Action_Completion_Date.Value);
+            Milestone updateMilestone = model.updateMilestone(model.Name, model.Description, model.Due_Date);
 
             _db.Milestones.Update(updateMilestone);
 

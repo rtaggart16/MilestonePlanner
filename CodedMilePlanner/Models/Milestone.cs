@@ -92,12 +92,11 @@ namespace CodedMilePlanner.Models
         /// <param name="dueDate"></param>
         /// <param name="actionCompletionDate"></param>
         /// <returns></returns>
-        public Milestone updateMilestone(string name, string description, DateTime dueDate, DateTime actionCompletionDate)
+        public Milestone updateMilestone(string name, string description, DateTime dueDate)
         {
             this.Name = name;
             this.Description = description;
             this.Due_Date = dueDate;
-            this.Action_Completion_Date = actionCompletionDate;
 
             return this;
         }

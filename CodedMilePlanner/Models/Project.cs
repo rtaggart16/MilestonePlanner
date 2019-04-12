@@ -33,6 +33,7 @@ namespace CodedMilePlanner.Models
         /// </summary>
         /// 
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Start_Time { get; set; }
 
         /// <summary>

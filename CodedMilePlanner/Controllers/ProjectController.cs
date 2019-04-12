@@ -141,17 +141,28 @@ namespace CodedMilePlanner.Controllers
         [HttpPost]
         public IActionResult EditProject(Project model)
         {
-            // Gets an updated version of the project using the updateProject method in the Project class (Project.cs)
-            Project updateProject = model.updateProject(model.Name, model.Start_Time, model.End_Time, model.Description);
+            var cookieModel = _cookieCutter.CheckForCodedMileCookie(CodedMileCookieTypes.Authorisation, HttpContext.Request.Cookies.ToList());
 
-            // Update the current instance of the project
-            _db.Projects.Update(updateProject);
+            if (cookieModel.HasCookie)
+            {
+                string userID = _db.User_Auth_Tokens.FirstOrDefault(x => x.Value == cookieModel.Value).User_ID;
 
-            // Save the changes made to the database
-            _db.SaveChanges();
+                // Gets an updated version of the project using the updateProject method in the Project class (Project.cs)
+                Project updateProject = model.updateProject(model.Name, model.Start_Time, model.End_Time, model.Description);
 
-            // Redirect the user to the Projects
-            return RedirectToAction("Projects");
+                updateProject.User_ID = userID;
+
+                // Update the current instance of the project
+                _db.Projects.Update(updateProject);
+
+                // Save the changes made to the database
+                _db.SaveChanges();
+
+                // Redirect the user to the Projects
+                return RedirectToAction("Projects");
+            }
+
+            return View(model);
         }
 
         /// <summary>

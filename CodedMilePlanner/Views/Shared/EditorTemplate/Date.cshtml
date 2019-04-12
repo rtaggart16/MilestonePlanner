@@ -1,0 +1,13 @@
+@model DateTime?
+    @{
+        var value = "";
+        if (Model.HasValue)
+        {
+            value = String.Format("{0:d}", Model.Value.ToString("dd/MM/yyyy"));
+        }
+        else
+        {
+            value = String.Format("{0:d}", DateTime.Today.Date.ToString("dd/MM/yyyy"));
+        }
+    }
+    

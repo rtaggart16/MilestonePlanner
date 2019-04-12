@@ -11,70 +11,144 @@
         </a>
     </h2>
     <div class="row">
-        @foreach (CodedMilePlanner.Models.Milestone milestone in Model.Milestones)
-        {
-            <div class="col-md-6">
-                <div class="card project-card">
-                    <div class="card-header row">
-                        <div class="h2 col-md-10">
-                            @milestone.Name
+        <div class="col-md-6">
+            <h3>To Do</h3>
+            @foreach (CodedMilePlanner.Models.Milestone milestone in Model.Milestones)
+            {
+                if (milestone.Action_Completion_Date.HasValue == false)
+                {
+                    <div class="card project-card">
+                        <div class="card-header">
+                            <h3> @milestone.Name </h3>
                         </div>
-                        <div class="col-md-2">
-                            <button id="@("M"+milestone.ID)" class="btn clipboardButton" onclick="copyMilestone(@milestone.ID)" data-clipboard-text="@("http://localhost:56030/Milestone/Shared?id="+milestone.ID)">
-                                <i class="fas fa-share-square"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
+                        <div class="card-body">
+
+                            <form asp-controller="Project" asp-action="EditProject" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
 
 
-
-
-                        <form asp-controller="Project" asp-action="EditProject" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-
-                            <div>
-                                <span> <i class="fas fa-align-left"></i> <b>Description</b></span>
-                            </div>
-                            <div>
-                                @milestone.Description
-                            </div>
-
-                            <br />
-
-                            <div>
-                                <span><i class="fas fa-calendar-alt"></i> <b>Due Date</b></span>
-                                <div class=" form-group" style="margin-top:1em;margin-bottom:1em;">
-                                    @milestone.Due_Date.ToShortDateString()
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <i class="fas fa-align-left"></i> <b>Description</b>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class=" form-group">
+                                            @milestone.Description
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <br />
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <i class="fas fa-calendar-alt"></i> <b>Due Date</b>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class=" form-group">
+                                            @milestone.Due_Date.ToShortDateString()
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <div style="text-align:right">
-                                <a href="../../Milestone/Delete?id=@milestone.ID" style="margin:12px; vertical-align: middle;">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                                <a href="../../Milestone/EditMilestone?id=@milestone.ID" style="margin:12px; vertical-align: middle;">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                @if (milestone.Action_Completion_Date.HasValue != true)
-                                {
-                                    <a href="../../Milestone/MarkAsComplete?id=@milestone.ID" style="margin:12px; vertical-align: middle;">
+                                <div style="text-align:right">
+                                    <a id="@("M"+milestone.ID)" 
+                                       class="clipboardButton cursorHover" 
+                                       style="margin:12px; vertical-align: middle;"
+                                       onclick="copyMilestone(@milestone.ID)" 
+                                       data-toggle="tooltip" 
+                                       title="Share"
+                                       data-clipboard-text="@("http://localhost:56030/Milestone/Shared?id="+milestone.ID)">
+                                        <i class="fas fa-share-square"></i>
+                                    </a>
+                                    <a href="../../Milestone/Delete?id=@milestone.ID" style="margin:12px; vertical-align: middle;" data-toggle="tooltip" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                    <a href="../../Milestone/EditMilestone?id=@milestone.ID" style="margin:12px; vertical-align: middle;" data-toggle="tooltip" title="Edit Milestone">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                    <a href="../../Milestone/MarkAsComplete?id=@milestone.ID" style="margin:12px; vertical-align: middle;  color:forestgreen" data-toggle="tooltip" title="Complete Milestone">
                                         <i class="fas fa-check"></i>
                                     </a>
-                                }
-                                else
-                                {
-                                    <a href="../../Milestone/MarkAsIncomplete?id=@milestone.ID" style="margin:12px; vertical-align: middle;">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                }
+
+            }
+        </div>
+        <div class="col-md-6">
+            <h3>Completed</h3>
+            @foreach (CodedMilePlanner.Models.Milestone milestone in Model.Milestones)
+            {
+                if (milestone.Action_Completion_Date.HasValue)
+                {
+                    <div class="card project-card">
+                        <div class="card-header">
+                            <h3> @milestone.Name </h3>
+                        </div>
+                        <div class="card-body">
+
+                            <form asp-controller="Project" asp-action="EditProject" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <i class="fas fa-align-left"></i> <b>Description</b>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class=" form-group">
+                                            @milestone.Description
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <i class="fas fa-calendar-alt"></i> <b>Due Date</b>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class=" form-group">
+                                            @milestone.Due_Date.ToShortDateString()
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <i class="fas fa-calendar-alt"></i> <b> Completed On</b>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class=" form-group">
+                                            @milestone.Action_Completion_Date.Value.ToShortDateString()
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="text-align:right">
+                                    <a id="@("M"+milestone.ID)"
+                                       class="clipboardButton cursorHover"
+                                       style="margin:12px; vertical-align: middle;;"
+                                       onclick="copyMilestone(@milestone.ID)"
+                                       data-toggle="tooltip" 
+                                       title="Share"
+                                       data-clipboard-text="@("http://localhost:56030/Milestone/Shared?id="+milestone.ID)">
+                                        <i class="fas fa-share-square"></i>
+                                    </a>
+                                    <a href="../../Milestone/MarkAsIncomplete?id=@milestone.ID" style="margin-left:14px; margin-right:14px; vertical-align: middle;  color:red;" data-toggle="tooltip" title="Undo Completion">
                                         <i class="fas fa-times"></i>
                                     </a>
-                                }
-                            </div>
+                                </div>
 
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            </div>
-        }
+                }
+
+            }
+        </div>
     </div>
-</div>
+
+<script>
+    $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
