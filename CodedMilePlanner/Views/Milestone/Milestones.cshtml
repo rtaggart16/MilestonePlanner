@@ -49,13 +49,13 @@
                                 </div>
 
                                 <div style="text-align:right">
-                                    <a id="@(" M"+milestone.ID)"
+                                    <a id="@("M"+milestone.ID)"
                                        class="clipboardButton cursorHover"
                                        style="margin:12px; vertical-align: middle;"
                                        onclick="copyMilestone(@milestone.ID)"
                                        data-toggle="tooltip"
                                        title="Share"
-                                       data-clipboard-text="@(" http://localhost:56030/Milestone/Shared?id="+milestone.ID)">
+                                       data-clipboard-text="@("http://localhost:56030/Milestone/Shared?id="+milestone.ID)">
                                     <i class="fas fa-share-square"></i>
                                     </a>
                                     <a href="../../Milestone/Delete?id=@milestone.ID" style="margin:12px; vertical-align: middle;" data-toggle="tooltip" title="Delete">
