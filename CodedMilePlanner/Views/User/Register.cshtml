@@ -21,11 +21,11 @@
                     <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
                         <div class="col-sm-6">
                             @Html.TextBoxFor(x => x.First_Name, new { @class = "form-control", placeholder = "First Name" })
-                            @Html.ValidationMessageFor(x => x.First_Name)
+                            @Html.ValidationMessageFor(x => x.First_Name, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-sm-6">
                             @Html.TextBoxFor(x => x.Last_Name, new { @class = "form-control", placeholder = "Last Name" })
-                            @Html.ValidationMessageFor(x => x.Last_Name)
+                            @Html.ValidationMessageFor(x => x.Last_Name, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>

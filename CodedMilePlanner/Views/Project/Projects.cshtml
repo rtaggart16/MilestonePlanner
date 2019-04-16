@@ -3,84 +3,100 @@
     ViewData["Title"] = "Projects";
     Layout = "~/Views/Shared/Layout/_Layout.cshtml";
 }
-<div>
-    <h2 class="projects-header">
-        My Projects
-        <a href="../../Project/AddProject">
-            <i id="addButton" class="fas fa-plus-circle" aria-hidden="true"></i>
-        </a>
-    </h2>
+    <div>
+        <h2 class="projects-header">
+            My Projects
+            <a href="../../Project/AddProject">
+                <i id="addButton" class="fas fa-plus-circle" aria-hidden="true"></i>
+            </a>
+        </h2>
 
-    @if (Model.Count == 0)
-    {
-        <script type="text/javascript">
-            $(document).ready(
-                swal({
-                    title: "Great job!",
-                    text: "Let's get started with making our first project",
-                    icon: "success",
-                    button: "Add Project",
-                }).then(function () {
-                    window.location = "/Project/AddProject";
-                })
-            );
+        @if (Model.Count == 0)
+        {
+            <script type="text/javascript">
+                $(document).ready(
+                    swal({
+                        title: "Great job!",
+                        text: "Let's get started with making our first project",
+                        icon: "success",
+                        button: "Add Project",
+                    }).then(function () {
+                        window.location = "/Project/AddProject";
+                    })
+                );
 
-        </script>
-    }
-    else
-    {
-        <div class="row">
-            @foreach (CodedMilePlanner.Models.Project project in Model)
-            {
-                <div class="col-md-6">
-                    <div class="card project-card">
-                        <div class="card-header h2">@project.Name</div>
-                        <div class="card-body">
-                            <form asp-controller="Project" asp-action="EditProject" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+            </script>
+        }
+        else
+        {
+            <div class="row">
+                @foreach (CodedMilePlanner.Models.Project project in Model)
+                {
+                    <div class="col-md-6">
+                        <div class="card project-card">
+                            <div class="card-header">
+                                <h3> @project.Name </h3>
+                            </div>
+                            <div class="card-body">
 
-                                <div>
-                                    <span> <i class="fas fa-align-left"></i> <b>Description</b></span>
-                                </div>
-                                <div>
-                                    @project.Description
-                                </div>
+                                <form asp-controller="Project" asp-action="EditProject" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
 
-                                <br />
 
-                                <div>
-                                    <span><i class="fas fa-calendar-alt"></i> <b>Project Start and End</b></span>
-                                    <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
-                                        <div class="col-sm-6">
-                                            @project.Start_Time.ToShortDateString()
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <i class="fas fa-align-left"></i> <b>Description</b>
                                         </div>
-                                        <div class="col-sm-6">
-                                            @project.End_Time.ToShortDateString()
+                                        <div class="col-md-6">
+                                            <div class=" form-group">
+                                                @project.Description
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <br />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <i class="fas fa-calendar-alt"></i> <b>Start Date</b>
+                                        </div>
+                                        <div class="col-md-6">
+                                                @project.Start_Time.ToShortDateString()
+                                        </div>
+                                    </div>
+                                
+                                
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <i class="fas fa-calendar-alt"></i> <b>End Date</b>
+                                        </div>
+                                        <div class="col-md-6">
+                                                @project.End_Time.ToShortDateString()
+                                        </div>
+                                    </div>
 
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <i class="fas fa-pen"></i>
-                                        <a href="../../Project/EditProject?id=@project.ID">Update</a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <i class="fas fa-trash"></i>
-                                        <a href="../../Project/Delete?id=@project.ID">Delete</a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <i class="fas fa-project-diagram"></i>
-                                        <a href="../../Milestone/Milestones?id=@project.ID">Milestones</a>
-                                    </div>
-                                </div>
 
-                            </form>
+
+                                    <div style="text-align:right">
+                                        <a href="../../Project/EditProject?id=@project.ID" style="margin:12px; vertical-align: middle;" data-toggle="tooltip" title="Edit Project">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+                                        <a href="../../Project/Delete?id=@project.ID" style="margin:12px; vertical-align: middle;" data-toggle="tooltip" title="Delete Project">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        <a href="../../Milestone/Milestones?id=@project.ID" style="margin:12px; vertical-align: middle;" data-toggle="tooltip" title="View Milestones">
+                                            <i class="fas fa-project-diagram"></i>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
-        </div>
-    }
-</div>
+                }
+            </div>
+        }
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>

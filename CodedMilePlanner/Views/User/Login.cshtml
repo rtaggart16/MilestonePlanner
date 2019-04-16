@@ -14,16 +14,16 @@
             <form asp-controller="User" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
                 <div>
                     <span> <i class="fas fa-user"></i> Email</span>
-                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.Email)
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" , placeholder = "Email" })
+                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
                 </div>
 
                 <br />
 
                 <div>
                     <span><i class="fas fa-key"></i> Password</span>
-                    @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.Password)
+                    @Html.PasswordFor(x => x.Password, new { @class = "form-control" , placeholder = "Password" })
+                    @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
                 </div>
 
                 <br />

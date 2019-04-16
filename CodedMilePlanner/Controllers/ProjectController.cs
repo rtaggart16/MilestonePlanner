@@ -93,19 +93,27 @@ namespace CodedMilePlanner.Controllers
 
             if (authCookieModel.HasCookie)
             {
-                string userID = _db.User_Auth_Tokens.FirstOrDefault(x => x.Value == authCookieModel.Value).User_ID;
+                if (ModelState.IsValid)
+                {
+                    string userID = _db.User_Auth_Tokens.FirstOrDefault(x => x.Value == authCookieModel.Value).User_ID;
 
-                // Creates a new Project by using the constructor defined in the Project class (Project.cs)
-                Project project = new Project(model.Name, model.Start_Time, model.End_Time, model.Description, userID);
+                    // Creates a new Project by using the constructor defined in the Project class (Project.cs)
+                    Project project = new Project(model.Name, model.Start_Time, model.End_Time, model.Description, userID);
 
-                // Add the project to the database
-                _db.Projects.Add(project);
+                    // Add the project to the database
+                    _db.Projects.Add(project);
 
-                // Saves the changes made to the database
-                _db.SaveChanges();
+                    // Saves the changes made to the database
+                    _db.SaveChanges();
 
-                // Redirect the user to the Projects page
-                return RedirectToAction("Projects");
+                    // Redirect the user to the Projects page
+                    return RedirectToAction("Projects");
+
+                }
+
+                return View(model);
+
+                
             }
 
             // Specifies the content type of the response (HTML)
@@ -141,17 +149,38 @@ namespace CodedMilePlanner.Controllers
         [HttpPost]
         public IActionResult EditProject(Project model)
         {
-            // Gets an updated version of the project using the updateProject method in the Project class (Project.cs)
-            Project updateProject = model.updateProject(model.Name, model.Start_Time, model.End_Time, model.Description);
+            var cookieModel = _cookieCutter.CheckForCodedMileCookie(CodedMileCookieTypes.Authorisation, HttpContext.Request.Cookies.ToList());
 
-            // Update the current instance of the project
-            _db.Projects.Update(updateProject);
+            if (cookieModel.HasCookie)
+            {
+                if (ModelState.IsValid)
+                {
+                    string userID = _db.User_Auth_Tokens.FirstOrDefault(x => x.Value == cookieModel.Value).User_ID;
 
-            // Save the changes made to the database
-            _db.SaveChanges();
+                    // Gets an updated version of the project using the updateProject method in the Project class (Project.cs)
+                    Project updateProject = model.updateProject(model.Name, model.Start_Time, model.End_Time, model.Description);
 
-            // Redirect the user to the Projects
-            return RedirectToAction("Projects");
+                    updateProject.User_ID = userID;
+
+                    // Update the current instance of the project
+                    _db.Projects.Update(updateProject);
+
+                    // Save the changes made to the database
+                    _db.SaveChanges();
+
+                    // Redirect the user to the Projects
+                    return RedirectToAction("Projects");
+                    
+                }
+
+                return View(model);
+            }
+
+            // Specifies the content type of the response (HTML)
+            Response.ContentType = "text/html";
+
+            // Redirects the user to the Login Action
+            return RedirectToAction("Login", "User");
         }
 
         /// <summary>

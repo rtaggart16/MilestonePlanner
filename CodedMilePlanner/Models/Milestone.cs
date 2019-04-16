@@ -14,6 +14,7 @@ namespace CodedMilePlanner.Models
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
         public int ID { get; set; }
 
         
@@ -27,6 +28,7 @@ namespace CodedMilePlanner.Models
         /// Attribute for the milestone name
         /// </summary>
         /// 
+        [Required]
         [StringLength(60, MinimumLength = 1, ErrorMessage = "The length of the milestone name is either too short or too long")]
         public string Name { get; set; }
 
@@ -44,6 +46,7 @@ namespace CodedMilePlanner.Models
         /// </summary>
         /// 
         [DataType(DataType.Date)]
+        [Required]
         public DateTime Due_Date { get; set; }
 
         
@@ -92,12 +95,11 @@ namespace CodedMilePlanner.Models
         /// <param name="dueDate"></param>
         /// <param name="actionCompletionDate"></param>
         /// <returns></returns>
-        public Milestone updateMilestone(string name, string description, DateTime dueDate, DateTime actionCompletionDate)
+        public Milestone updateMilestone(string name, string description, DateTime dueDate)
         {
             this.Name = name;
             this.Description = description;
             this.Due_Date = dueDate;
-            this.Action_Completion_Date = actionCompletionDate;
 
             return this;
         }
