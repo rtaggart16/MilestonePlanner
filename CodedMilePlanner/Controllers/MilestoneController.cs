@@ -65,15 +65,21 @@ namespace CodedMilePlanner.Controllers
         [HttpPost]
         public IActionResult AddMilestone(Milestone model)
         {
-            var project = _db.Projects.FirstOrDefault(x => x.ID == model.Project_ID);
+            if (ModelState.IsValid)
+            {
+                var project = _db.Projects.FirstOrDefault(x => x.ID == model.Project_ID);
 
-            Milestone milestone = project.createMilestone(model.Name, model.Description, model.Due_Date);
+                Milestone milestone = project.createMilestone(model.Name, model.Description, model.Due_Date);
 
-            _db.Milestones.Add(milestone);
+                _db.Milestones.Add(milestone);
 
-            _db.SaveChanges();
+                _db.SaveChanges();
 
-            return RedirectToAction("Milestones", new { id = project.ID });
+                return RedirectToAction("Milestones", new { id = project.ID });
+            }
+
+            return View(model);
+
         }
 
         /// <summary>
@@ -99,13 +105,19 @@ namespace CodedMilePlanner.Controllers
         [HttpPost]
         public IActionResult EditMilestone(Milestone model)
         {
-            Milestone updateMilestone = model.updateMilestone(model.Name, model.Description, model.Due_Date);
+            if (ModelState.IsValid)
+            {
+                Milestone updateMilestone = model.updateMilestone(model.Name, model.Description, model.Due_Date);
 
-            _db.Milestones.Update(updateMilestone);
+                _db.Milestones.Update(updateMilestone);
 
-            _db.SaveChanges();
+                _db.SaveChanges();
 
-            return RedirectToAction("Milestones", new { id = model.Project_ID });
+                return RedirectToAction("Milestones", new { id = model.Project_ID });
+
+            }
+
+            return View(model);
         }
 
         /// <summary>
