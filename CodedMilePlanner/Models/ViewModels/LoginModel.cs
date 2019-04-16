@@ -17,9 +17,15 @@ namespace CodedMilePlanner.Models.ViewModels
         [Required]
         public string Email { get; set; }
         /// <summary>
-        /// The user's password
+        /// The User's password
         /// </summary>
         [Required]
+        [StringLength(18, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
         public string Password { get; set; }
     }
+
+    
+    
 }

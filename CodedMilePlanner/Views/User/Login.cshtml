@@ -11,6 +11,7 @@
     <div class="card login-card col-md-6">
         <div class="card-header h2">Log In</div>
         <div class="card-body">
+            @ViewBag.Message
             <form asp-controller="User" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
                 <div>
                     <span> <i class="fas fa-user"></i> Email</span>
