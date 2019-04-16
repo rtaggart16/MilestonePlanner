@@ -1,6 +1,7 @@
 # Coded Mile - Milestone Planner Project
 
 <p>Authors: Ross Taggart, Aidan Marshall, Katie King and Mark Riley</p>
+<p>You can find our group document and their relevent appendixes in the Docs folder</p>
 
 <span><strong>Last Updated - 16/04/2019</strong></span>
 
