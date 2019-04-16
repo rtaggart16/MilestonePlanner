@@ -99,14 +99,18 @@ namespace CodedMilePlanner.Controllers
 
                 // Specifies the content type of the response (HTML)
                 Response.ContentType = "text/html";
-                return View();
+
+                //view bag will display that email is taken, as this is the only other error
+                ViewBag.Message = "Email has not yet been registered, please try registering first.";
+
+                return View(model);
 
             }
             else
             {
                 // Specifies the content type of the response (HTML)
                 Response.ContentType = "text/html";
-                return View();
+                return View(model);
             }
         }
 
