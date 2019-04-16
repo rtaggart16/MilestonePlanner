@@ -184,7 +184,9 @@ namespace CodedMilePlanner.Controllers
 
                     Result modelResult = new Result();
 
-                    model.Result = modelResult.CreateResult(false, "There was an error registering you");
+
+
+                    //model.Result = modelResult.CreateResult(false, "There was an error registering you");
 
                     // Specifies the content type of the response (HTML)
                     Response.ContentType = "text/html";

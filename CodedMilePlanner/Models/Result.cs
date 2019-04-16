@@ -12,21 +12,21 @@ namespace CodedMilePlanner.Models
         public bool Success { get; set; }
 
         [Required]
-        public string Message { get; set; }
+        public List<string> Messages { get; set; }
 
         public Result()
         {
         }
 
-        public Result(bool success, string message)
+        public Result(bool success, List<string> messages)
         {
             this.Success = success;
-            this.Message = message;
+            this.Messages = messages;
         }
 
-        public Result CreateResult(bool success, string message)
+        public Result CreateResult(bool success, List<string> messages)
         {
-            return new Result(success, message);
+            return new Result(success, messages);
         }
     }
 
