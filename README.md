@@ -30,3 +30,21 @@ to the master branch</p>
 <p>This step involves ensuring that the CodedMilePlanner.sln is open. If done correctly the solution explorer should appear like this</p>
 
 <img src="https://github.com/rtaggart16/MilestonePlanner/blob/master/img/sol_exp.PNG" />
+
+<h4>Step 2: Check for Migrations</h4>
+
+<p>This step involves ensuring that the solution contains migrations with which the database can be created from</p>
+
+<img src="https://github.com/rtaggart16/MilestonePlanner/blob/master/img/migrations.PNG" />
+
+<h4>Step 3: Check the name of the database in appsettings.json</h4>
+
+<p>This step involves checking the name of the database in the appsettings.json. This database can be found in SQL Server Object Explorer when migrations are run</p>
+
+<img src="https://github.com/rtaggart16/MilestonePlanner/blob/master/img/appsettings.PNG" />
+
+<h4>Step 4: Run "Update-Database"</h4>
+
+<p>This step involves running the update-database command to apply the migrations to the specified database</p>
+
+<img src="https://github.com/rtaggart16/MilestonePlanner/blob/master/img/pcg_man.PNG" />
