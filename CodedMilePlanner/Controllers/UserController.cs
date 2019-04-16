@@ -202,13 +202,10 @@ namespace CodedMilePlanner.Controllers
             else
             {
 
-                var errors = ModelState.Values;
-
-
 
                 // Specifies the content type of the response (HTML)
                 Response.ContentType = "text/html";
-                return View();
+                return View(model);
             }
             
         }
