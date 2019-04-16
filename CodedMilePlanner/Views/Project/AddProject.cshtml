@@ -16,7 +16,7 @@
                 <div>
                     <span> <i class="fas fa-project-diagram"></i> Name</span>
                     @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Name of Project" })
-                    @Html.ValidationMessageFor(x => x.Name)
+                    @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
                 </div>
 
                 <br />
@@ -24,7 +24,7 @@
                 <div>
                     <span> <i class="fas fa-align-left"></i> Description</span>
                     @Html.TextBoxFor(x => x.Description, new { @class = "form-control", placeholder = "Description" })
-                    @Html.ValidationMessageFor(x => x.Description)
+                    @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
                 </div>
 
                 <br />

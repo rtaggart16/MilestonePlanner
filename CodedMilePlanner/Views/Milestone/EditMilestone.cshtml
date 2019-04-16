@@ -23,7 +23,7 @@
                 <div>
                     <span> <i class="fas fa-project-diagram"></i> Name</span>
                     @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Name of Project" })
-                    @Html.ValidationMessageFor(x => x.Name)
+                    @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
                 </div>
 
                 <br />
@@ -31,7 +31,7 @@
                 <div>
                     <span> <i class="fas fa-align-left"></i> Description</span>
                     @Html.TextBoxFor(x => x.Description, new { @class = "form-control", placeholder = "Description" })
-                    @Html.ValidationMessageFor(x => x.Description)
+                    @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
                 </div>
 
                 <br />
@@ -40,7 +40,7 @@
                     <span><i class="fas fa-calendar-alt"></i> Due Date</span>
                     <div class="form-group" style="margin-top:1em;margin-bottom:1em;">
                         @Html.EditorFor(x => x.Due_Date, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Due_Date)
+                        @Html.ValidationMessageFor(x => x.Due_Date, "", new { @class = "text-danger" })
                     </div>
                 </div>
 

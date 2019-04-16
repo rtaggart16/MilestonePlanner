@@ -33,11 +33,11 @@
                     <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
                         <div class="col-sm-6">
                             @Html.EditorFor(x => x.Start_Time, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.Start_Time)
+                            @Html.ValidationMessageFor(x => x.Start_Time, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-sm-6">
                             @Html.EditorFor(x => x.End_Time, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(x => x.End_Time)
+                            @Html.ValidationMessageFor(x => x.End_Time, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
