@@ -1,7 +1,13 @@
 # Coded Mile - Milestone Planner Project
 
 <p>Authors: Ross Taggart, Aidan Marshall, Katie King and Mark Riley</p>
-<p>You can find our group document and their relevent appendixes in the Docs folder</p>
+<p>You can find our group document and their relevent appendixes in the Docs folder, this contains the following:</p>
+<ul>
+  <li>Group Document</li>
+  <li>Appendix A - This is our testing document</li>
+  <li>Appendix B - This is our meeting notes from each week</li>
+  <li>Appendix C - This is our document containing our code reviews</li>
+</ul>
 
 <span><strong>Last Updated - 16/04/2019</strong></span>
 
