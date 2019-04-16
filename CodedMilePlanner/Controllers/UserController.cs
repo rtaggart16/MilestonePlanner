@@ -125,7 +125,7 @@ namespace CodedMilePlanner.Controllers
 
             RegisterModel model = new RegisterModel
             {
-                Result = result.CreateResult(true, "")
+                Result = result.CreateResult(true, new List<string> { "" })
             };
 
             // Specifies the content type of the response (HTML)
