@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/Layout/_Layout.cshtml";
 }
 
+
 <div class="row">
     <div class="col-md-3">
     </div>
@@ -19,7 +20,7 @@
                 </div>
 
                 <br />
-                
+
                 <div>
                     <span> <i class="fas fa-align-left"></i> Description</span>
                     @Html.TextBoxFor(x => x.Description, new { @class = "form-control", placeholder = "Description" })
@@ -32,13 +33,15 @@
                     <span><i class="fas fa-calendar-alt"></i> Start and End Dates</span>
                     <div class="row form-group" style="margin-top:1em;margin-bottom:1em;">
                         <div class="col-sm-6">
-                            @Html.EditorFor(x => x.Start_Time, new { @class = "datepicker" })
+                            @Html.EditorFor(x => x.Start_Time)
+                            @Html.ValidationMessageFor(model => model.Start_Time, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-sm-6">
-                            @Html.EditorFor(x => x.End_Time, String.Format("{0:d}", DateTime.Today.Date.ToString("dd/MM/yyyy")), new { @class = "datetimepicker", type = "text" })
-                            @Html.EditorFor(x => x.End_Time, new { date = DateTime.Now.Date, @class = "form-control datepicker2" })
-                            @Html.ValidationMessageFor(x => x.End_Time)
+                            @Html.EditorFor(m => m.End_Time)
+                            @Html.ValidationMessageFor(x => x.End_Time, "", new { @class = "text-danger" })
                         </div>
+
+
                     </div>
                 </div>
 
@@ -55,10 +58,3 @@
     <div class="col-md-3">
     </div>
 </div>
-
-
-<script type="text/javascript">
-    $(function () { // will trigger when the document is ready
-       $('.datepicker').datepicker(); //Initialise any date pickers
-    });
-</script>

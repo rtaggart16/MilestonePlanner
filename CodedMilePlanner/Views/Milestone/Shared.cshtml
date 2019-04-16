@@ -8,30 +8,49 @@
 
     <div class="col-md-6">
         <div class="card project-card">
-            <div class="card-header h2">@Model.Name</div>
+            <div class="card-header">
+                <h3> @Model.Name </h3>
+            </div>
             <div class="card-body">
 
-                <div>
-                    <button class="btn clipboardButton" data-clipboard-text="@("http://localhost:56030/Milestone/Shared?id="+Model.ID)">
-                        <i class="fas fa-share-square"></i>
-                    </button>
-                </div>
+                <form asp-controller="Project" asp-action="EditProject" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
 
-                <div>
-                    <span> <i class="fas fa-align-left"></i> <b>Description</b></span>
-                </div>
-                <div>
-                    @Model.Description
-                </div>
 
-                <br />
-
-                <div>
-                    <span><i class="fas fa-calendar-alt"></i> <b>Milestone Due Date</b></span>
-                    <div class="form-group" style="margin-top:1em;margin-bottom:1em;">
-                        @Model.Due_Date
+                    <div class="row">
+                        <div class="col-md-6">
+                            <i class="fas fa-align-left"></i> <b>Description</b>
+                        </div>
+                        <div class="col-md-6">
+                            <div class=" form-group">
+                                @Model.Description
+                            </div>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <i class="fas fa-calendar-alt"></i> <b>Due Date</b>
+                        </div>
+                        <div class="col-md-6">
+                            <div class=" form-group">
+                                @Model.Due_Date.ToShortDateString()
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align:right">
+                        <a id="@(" M"+Model.ID)"
+                           class="clipboardButton cursorHover"
+                           style="margin:12px; vertical-align: middle;"
+                           onclick="copyMilestone(@Model.ID)"
+                           data-toggle="tooltip"
+                           title="Share"
+                           data-clipboard-text="@(" http://localhost:56030/Milestone/Shared?id="+Model.ID)">
+                            <i class="fas fa-share-square"></i>
+                        </a>
+                    </div>
+
+                </form>
             </div>
         </div>
     </div>

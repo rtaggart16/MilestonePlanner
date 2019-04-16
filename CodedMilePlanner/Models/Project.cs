@@ -14,6 +14,7 @@ namespace CodedMilePlanner.Models
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
         public int ID { get; set; }
 
         /// <summary>
@@ -25,6 +26,8 @@ namespace CodedMilePlanner.Models
         /// Attribute for the name of the project
         /// </summary>
         /// 
+        [Required]
+        [Display(Name = "Project Name")]
         [StringLength(150, MinimumLength = 3, ErrorMessage = "The length of the project name is either too short or too long")]
         public string Name { get; set; }
 
@@ -33,7 +36,9 @@ namespace CodedMilePlanner.Models
         /// </summary>
         /// 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Start Date")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+
         public DateTime Start_Time { get; set; }
 
         /// <summary>
@@ -41,6 +46,7 @@ namespace CodedMilePlanner.Models
         /// </summary>
         /// 
         [DataType(DataType.Date)]
+        [Display(Name = "End Date")]
         public DateTime End_Time { get; set; }
 
         /// <summary>
