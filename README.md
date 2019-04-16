@@ -29,4 +29,4 @@ to the master branch</p>
 
 <p>This step involves ensuring that the CodedMilePlanner.sln is open. If done correctly the solution explorer should appear like this</p>
 
-[[https://github.com/username/repository/blob/master/img/octocat.png|alt=octocat]]
+[[https://github.com/rtaggart16/MilestonePlanner/blob/master/img/sol_exp.PNG|alt=octocat]]
