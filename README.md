@@ -3,7 +3,7 @@
 <p>Authors: Ross Taggart, Aidan Marshall, Katie King and Mark Riley</p>
 <p>You can find our group document and their relevent appendixes in the Docs folder, this contains the following:</p>
 <ul>
-  <li>Group Document</li>
+  <li><strong>Group Document</strong></li>
   <li><strong>Appendix A</strong> - This is our testing document</li>
   <li><strong>Appendix B</strong> - This is our meeting notes from each week</li>
   <li><strong>Appendix C</strong> - This is our document containing our code reviews</li>
