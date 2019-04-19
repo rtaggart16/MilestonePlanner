@@ -9,7 +9,9 @@
   <li><strong>Appendix C</strong> - This is our document containing our code reviews</li>
 </ul>
 
-<span><strong>Last Updated - 16/04/2019</strong></span>
+<p>To download any of these files, click into the chosen file and click "download" or "view raw"</p>
+
+<span><strong>Last Updated - 19/04/2019</strong></span>
 
 <h2>Overview</h2>
 
